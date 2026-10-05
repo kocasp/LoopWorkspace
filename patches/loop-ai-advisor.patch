@@ -352,10 +352,10 @@ index d4b4876..254113c 100644
 +    }
 +}
 diff --git a/Loop/Loop/Views/SettingsView.swift b/Loop/Loop/Views/SettingsView.swift
-index 4d65f5b..5714262 100644
+index 4d65f5b..261a8f1 100644
 --- a/Loop/Loop/Views/SettingsView.swift
 +++ b/Loop/Loop/Views/SettingsView.swift
-@@ -56,6 +56,11 @@ public struct SettingsView: View {
+@@ -56,6 +56,10 @@ public struct SettingsView: View {
      @State private var actionSheet: Destination.ActionSheet?
      @State private var alert: Destination.Alert?
      @State private var sheet: Destination.Sheet?
@@ -363,11 +363,10 @@ index 4d65f5b..5714262 100644
 +    @State private var aiAPIKey: String = AIAdvisorService.storedAPIKey(for: AIAdvisorService.storedProvider)
 +    @State private var aiSuggestions: [AIAdvisorDisplay] = []
 +    @State private var aiLoading: Bool = false
-+    @State private var showAISheet: Bool = false
      
      var localizedAppNameAndVersion: String
  
-@@ -81,6 +86,7 @@ public struct SettingsView: View {
+@@ -81,6 +85,7 @@ public struct SettingsView: View {
                          configurationSection
                      }
                      deviceSettingsSection
@@ -375,7 +374,7 @@ index 4d65f5b..5714262 100644
                      if FeatureFlags.allowExperimentalFeatures {
                          favoriteFoodsSection
                      }
-@@ -125,6 +131,84 @@ public struct SettingsView: View {
+@@ -125,6 +130,67 @@ public struct SettingsView: View {
          .navigationViewStyle(.stack)
      }
  
@@ -411,9 +410,22 @@ index 4d65f5b..5714262 100644
 +                }
 +            }
 +            .disabled(viewModel.aiAdvisor == nil || aiLoading)
-+        }
-+        .sheet(isPresented: $showAISheet) {
-+            aiSheetView
++            ForEach(aiSuggestions) { suggestion in
++                VStack(alignment: .leading, spacing: 6) {
++                    Text(suggestion.title)
++                        .font(.subheadline)
++                    HStack {
++                        Text(suggestion.detail)
++                            .font(.footnote)
++                            .foregroundColor(.secondary)
++                        Spacer()
++                        Button("Zastosuj") {
++                            viewModel.aiAdvisor?.applyBasal(suggestion)
++                        }
++                        .buttonStyle(.borderless)
++                    }
++                }
++            }
 +        }
 +    }
 +
@@ -424,36 +436,6 @@ index 4d65f5b..5714262 100644
 +        await MainActor.run {
 +            aiLoading = false
 +            aiSuggestions = result
-+            showAISheet = true
-+        }
-+    }
-+
-+    private var aiSheetView: some View {
-+        NavigationView {
-+            List {
-+                if aiSuggestions.isEmpty {
-+                    Text("Brak sugestii dla ostatnich danych.")
-+                } else {
-+                    ForEach(aiSuggestions) { suggestion in
-+                        VStack(alignment: .leading, spacing: 6) {
-+                            Text(suggestion.title)
-+                                .font(.subheadline)
-+                            HStack {
-+                                Text(suggestion.detail)
-+                                    .font(.footnote)
-+                                    .foregroundColor(.secondary)
-+                                Spacer()
-+                                Button("Zastosuj") {
-+                                    viewModel.aiAdvisor?.applyBasal(suggestion)
-+                                }
-+                                .buttonStyle(.borderless)
-+                            }
-+                        }
-+                    }
-+                }
-+            }
-+            .navigationBarTitle("Sugestie AI", displayMode: .inline)
-+            .navigationBarItems(trailing: Button("Zamknij") { showAISheet = false })
 +        }
 +    }
 +
