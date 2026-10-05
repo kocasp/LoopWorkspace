@@ -11,7 +11,7 @@ index 3e124fa..bb68ce3 100644
              rootView: SettingsView(viewModel: viewModel, localizedAppNameAndVersion: supportManager.localizedAppNameAndVersion)
                  .environmentObject(deviceManager.displayGlucosePreference)
 diff --git a/Loop/Loop/View Models/SettingsViewModel.swift b/Loop/Loop/View Models/SettingsViewModel.swift
-index d4b4876..5852210 100644
+index d4b4876..254113c 100644
 --- a/Loop/Loop/View Models/SettingsViewModel.swift	
 +++ b/Loop/Loop/View Models/SettingsViewModel.swift	
 @@ -7,6 +7,7 @@
@@ -30,7 +30,7 @@ index d4b4876..5852210 100644
      let therapySettings: () -> TherapySettings
      let sensitivityOverridesEnabled: Bool
      let isOnboardingComplete: Bool
-@@ -188,3 +190,261 @@ extension SettingsViewModel {
+@@ -188,3 +190,320 @@ extension SettingsViewModel {
                                   delegate: nil)
      }
  }
@@ -54,6 +54,37 @@ index d4b4876..5852210 100644
 +        self.endHour = endHour
 +        self.currentValue = currentValue
 +        self.suggestedValue = suggestedValue
++    }
++}
++
++enum AIAdvisorProvider: String, CaseIterable, Identifiable {
++    case deepSeek
++    case anthropic
++    case openAI
++
++    var id: String { rawValue }
++
++    var displayName: String {
++        switch self {
++        case .deepSeek: return "DeepSeek"
++        case .anthropic: return "Anthropic (Claude)"
++        case .openAI: return "OpenAI"
++        }
++    }
++
++    var defaultModel: String {
++        switch self {
++        case .deepSeek: return "deepseek-chat"
++        case .anthropic: return "claude-3-5-sonnet-latest"
++        case .openAI: return "gpt-4o-mini"
++        }
++    }
++
++    var keyPlaceholder: String {
++        switch self {
++        case .anthropic: return "sk-ant-..."
++        case .deepSeek, .openAI: return "sk-..."
++        }
 +    }
 +}
 +
@@ -94,11 +125,19 @@ index d4b4876..5852210 100644
 +        let confidence: Double?
 +    }
 +
-+    static let apiKeyDefaultsKey = "AIAdvisor.anthropicAPIKey"
++    static let providerDefaultsKey = "AIAdvisor.provider"
 +
-+    static var storedAPIKey: String {
-+        get { UserDefaults.standard.string(forKey: apiKeyDefaultsKey) ?? "" }
-+        set { UserDefaults.standard.set(newValue, forKey: apiKeyDefaultsKey) }
++    static var storedProvider: AIAdvisorProvider {
++        get { AIAdvisorProvider(rawValue: UserDefaults.standard.string(forKey: providerDefaultsKey) ?? "") ?? .deepSeek }
++        set { UserDefaults.standard.set(newValue.rawValue, forKey: providerDefaultsKey) }
++    }
++
++    static func storedAPIKey(for provider: AIAdvisorProvider) -> String {
++        UserDefaults.standard.string(forKey: "AIAdvisor.apiKey.\(provider.rawValue)") ?? ""
++    }
++
++    static func setAPIKey(_ value: String, for provider: AIAdvisorProvider) {
++        UserDefaults.standard.set(value, forKey: "AIAdvisor.apiKey.\(provider.rawValue)")
 +    }
 +
 +    init(deviceManager: DeviceDataManager) {
@@ -120,8 +159,9 @@ index d4b4876..5852210 100644
 +
 +        var suggestions = AIAdvisorService.statisticalSuggestions(profile: profile, currentBasal: currentBasal)
 +
-+        let key = AIAdvisorService.storedAPIKey
-+        if !key.isEmpty, let ai = await AIAdvisorService.aiSuggestions(profile: profile, currentBasal: currentBasal, apiKey: key), !ai.isEmpty {
++        let provider = AIAdvisorService.storedProvider
++        let key = AIAdvisorService.storedAPIKey(for: provider)
++        if !key.isEmpty, let ai = await AIAdvisorService.aiSuggestions(profile: profile, currentBasal: currentBasal, apiKey: key, provider: provider), !ai.isEmpty {
 +            suggestions = AIAdvisorService.reconcile(ai: ai, baseline: suggestions)
 +        }
 +
@@ -255,27 +295,46 @@ index d4b4876..5852210 100644
 +        }
 +    }
 +
-+    private static func aiSuggestions(profile: Profile, currentBasal: [Double], apiKey: String) async -> [AISuggestion]? {
-+        guard let url = URL(string: "https://api.anthropic.com/v1/messages") else { return nil }
-+        var request = URLRequest(url: url)
-+        request.httpMethod = "POST"
-+        request.timeoutInterval = 45
-+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-+        request.setValue(apiKey, forHTTPHeaderField: "x-api-key")
-+        request.setValue("2023-06-01", forHTTPHeaderField: "anthropic-version")
-+
++    private static func aiSuggestions(profile: Profile, currentBasal: [Double], apiKey: String, provider: AIAdvisorProvider) async -> [AISuggestion]? {
 +        let table = profile.hours.map { String(format: "%02d:00 mediana=%.0f powyżej=%.0f%% poniżej=%.0f%% dni=%d", $0.hour, $0.median, $0.percentAbove * 100, $0.percentBelow * 100, $0.days) }.joined(separator: "\n")
 +        let basal = (0..<24).map { String(format: "%02d:00=%.2f", $0, currentBasal[$0]) }.joined(separator: " ")
 +        let system = "Jesteś asystentem terapii cukrzycy typu 1. Odpowiadaj WYŁĄCZNIE w JSON: tablica obiektów {\"parameter\":\"basal\",\"startHour\":0-23,\"endHour\":0-23,\"suggestedValue\":liczba,\"rationale\":\"krótko po polsku\",\"confidence\":0-1}. Bez tekstu poza JSON."
 +        let user = "Zakres docelowy 70-180 mg/dL. Dni: \(profile.dayCount). Aktualna baza: \(basal).\nProfil:\n\(table)\nZaproponuj zmiany bazy (maks. ±0.3 U/h)."
-+        let body: [String: Any] = ["model": "claude-3-5-sonnet-latest", "max_tokens": 1024, "system": system, "messages": [["role": "user", "content": user]]]
-+        request.httpBody = try? JSONSerialization.data(withJSONObject: body)
++
++        var request: URLRequest
++        switch provider {
++        case .anthropic:
++            guard let url = URL(string: "https://api.anthropic.com/v1/messages") else { return nil }
++            request = URLRequest(url: url)
++            request.setValue(apiKey, forHTTPHeaderField: "x-api-key")
++            request.setValue("2023-06-01", forHTTPHeaderField: "anthropic-version")
++            let body: [String: Any] = ["model": provider.defaultModel, "max_tokens": 1024, "system": system, "messages": [["role": "user", "content": user]]]
++            request.httpBody = try? JSONSerialization.data(withJSONObject: body)
++        case .deepSeek, .openAI:
++            let endpoint = provider == .deepSeek ? "https://api.deepseek.com/chat/completions" : "https://api.openai.com/v1/chat/completions"
++            guard let url = URL(string: endpoint) else { return nil }
++            request = URLRequest(url: url)
++            request.setValue("Bearer \(apiKey)", forHTTPHeaderField: "Authorization")
++            let body: [String: Any] = ["model": provider.defaultModel, "temperature": 0.2, "messages": [["role": "system", "content": system], ["role": "user", "content": user]]]
++            request.httpBody = try? JSONSerialization.data(withJSONObject: body)
++        }
++        request.httpMethod = "POST"
++        request.timeoutInterval = 45
++        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
 +
 +        guard let (data, response) = try? await URLSession.shared.data(for: request),
 +              let http = response as? HTTPURLResponse, (200..<300).contains(http.statusCode),
-+              let object = try? JSONSerialization.jsonObject(with: data) as? [String: Any],
-+              let content = object["content"] as? [[String: Any]] else { return nil }
-+        let text = content.compactMap { $0["text"] as? String }.joined()
++              let object = try? JSONSerialization.jsonObject(with: data) as? [String: Any] else { return nil }
++
++        let text: String
++        switch provider {
++        case .anthropic:
++            let content = object["content"] as? [[String: Any]] ?? []
++            text = content.compactMap { $0["text"] as? String }.joined()
++        case .deepSeek, .openAI:
++            let choices = object["choices"] as? [[String: Any]] ?? []
++            text = ((choices.first?["message"] as? [String: Any])?["content"] as? String) ?? ""
++        }
 +        guard let start = text.firstIndex(of: "["), let end = text.lastIndex(of: "]"), start < end,
 +              let jsonData = String(text[start...end]).data(using: .utf8) else { return nil }
 +        return try? JSONDecoder().decode([AISuggestion].self, from: jsonData)
@@ -293,21 +352,22 @@ index d4b4876..5852210 100644
 +    }
 +}
 diff --git a/Loop/Loop/Views/SettingsView.swift b/Loop/Loop/Views/SettingsView.swift
-index 4d65f5b..1357c25 100644
+index 4d65f5b..5714262 100644
 --- a/Loop/Loop/Views/SettingsView.swift
 +++ b/Loop/Loop/Views/SettingsView.swift
-@@ -56,6 +56,10 @@ public struct SettingsView: View {
+@@ -56,6 +56,11 @@ public struct SettingsView: View {
      @State private var actionSheet: Destination.ActionSheet?
      @State private var alert: Destination.Alert?
      @State private var sheet: Destination.Sheet?
-+    @State private var aiAPIKey: String = AIAdvisorService.storedAPIKey
++    @State private var aiProvider: AIAdvisorProvider = AIAdvisorService.storedProvider
++    @State private var aiAPIKey: String = AIAdvisorService.storedAPIKey(for: AIAdvisorService.storedProvider)
 +    @State private var aiSuggestions: [AIAdvisorDisplay] = []
 +    @State private var aiLoading: Bool = false
 +    @State private var showAISheet: Bool = false
      
      var localizedAppNameAndVersion: String
  
-@@ -81,6 +85,7 @@ public struct SettingsView: View {
+@@ -81,6 +86,7 @@ public struct SettingsView: View {
                          configurationSection
                      }
                      deviceSettingsSection
@@ -315,19 +375,28 @@ index 4d65f5b..1357c25 100644
                      if FeatureFlags.allowExperimentalFeatures {
                          favoriteFoodsSection
                      }
-@@ -125,6 +130,75 @@ public struct SettingsView: View {
+@@ -125,6 +131,84 @@ public struct SettingsView: View {
          .navigationViewStyle(.stack)
      }
  
 +    private var aiAdvisorSection: some View {
 +        Section(header: SectionHeader(label: "AI Advisor")) {
++            Picker("Dostawca", selection: $aiProvider) {
++                ForEach(AIAdvisorProvider.allCases) { provider in
++                    Text(provider.displayName).tag(provider)
++                }
++            }
++            .onChange(of: aiProvider) { value in
++                AIAdvisorService.storedProvider = value
++                aiAPIKey = AIAdvisorService.storedAPIKey(for: value)
++            }
 +            HStack {
-+                Image(systemName: "wand.and.stars")
-+                SecureField("Klucz API Anthropic (sk-ant-...)", text: $aiAPIKey)
++                Image(systemName: "key")
++                SecureField(aiProvider.keyPlaceholder, text: $aiAPIKey)
 +                    .textInputAutocapitalization(.never)
 +                    .disableAutocorrection(true)
 +                    .onChange(of: aiAPIKey) { value in
-+                        AIAdvisorService.storedAPIKey = value
++                        AIAdvisorService.setAPIKey(value, for: aiProvider)
 +                    }
 +            }
 +            Button(action: {
