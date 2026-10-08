@@ -1129,49 +1129,29 @@ index 0000000..2e35a71
 +    }
 +}
 diff --git a/Loop/Loop/View Controllers/StatusTableViewController.swift b/Loop/Loop/View Controllers/StatusTableViewController.swift
-index 3e124fa..8dc2075 100644
+index 3e124fa..3525aad 100644
 --- a/Loop/Loop/View Controllers/StatusTableViewController.swift	
 +++ b/Loop/Loop/View Controllers/StatusTableViewController.swift	
-@@ -1636,7 +1636,8 @@ final class StatusTableViewController: LoopChartsTableViewController {
-                                           availableSupports: supportManager.availableSupports,
+@@ -1637,6 +1637,7 @@ final class StatusTableViewController: LoopChartsTableViewController {
                                            isOnboardingComplete: onboardingManager.isComplete,
                                            therapySettingsViewModelDelegate: deviceManager,
--                                          delegate: self)
-+                                          delegate: self,
-+                                          therapyInsightsDataSource: deviceManager)
+                                           delegate: self)
++        viewModel.therapyInsightsDataSource = deviceManager
          let hostingController = DismissibleHostingController(
              rootView: SettingsView(viewModel: viewModel, localizedAppNameAndVersion: supportManager.localizedAppNameAndVersion)
                  .environmentObject(deviceManager.displayGlucosePreference)
 diff --git a/Loop/Loop/View Models/SettingsViewModel.swift b/Loop/Loop/View Models/SettingsViewModel.swift
-index d4b4876..9a633d0 100644
+index d4b4876..01b67ae 100644
 --- a/Loop/Loop/View Models/SettingsViewModel.swift	
 +++ b/Loop/Loop/View Models/SettingsViewModel.swift	
 @@ -79,6 +79,7 @@ public class SettingsViewModel: ObservableObject {
      let sensitivityOverridesEnabled: Bool
      let isOnboardingComplete: Bool
      let therapySettingsViewModelDelegate: TherapySettingsViewModelDelegate?
-+    let therapyInsightsDataSource: TherapyInsightsDataSource?
++    var therapyInsightsDataSource: TherapyInsightsDataSource?
  
      @Published var isClosedLoopAllowed: Bool
  
-@@ -120,7 +121,8 @@ public class SettingsViewModel: ObservableObject {
-                 availableSupports: [SupportUI],
-                 isOnboardingComplete: Bool,
-                 therapySettingsViewModelDelegate: TherapySettingsViewModelDelegate?,
--                delegate: SettingsViewModelDelegate?
-+                delegate: SettingsViewModelDelegate?,
-+                therapyInsightsDataSource: TherapyInsightsDataSource? = nil
-     ) {
-         self.alertPermissionsChecker = alertPermissionsChecker
-         self.alertMuter = alertMuter
-@@ -138,6 +140,7 @@ public class SettingsViewModel: ObservableObject {
-         self.isOnboardingComplete = isOnboardingComplete
-         self.therapySettingsViewModelDelegate = therapySettingsViewModelDelegate
-         self.delegate = delegate
-+        self.therapyInsightsDataSource = therapyInsightsDataSource
- 
-         // This strangeness ensures the composed ViewModels' (ObservableObjects') changes get reported to this ViewModel (ObservableObject)
-         alertPermissionsChecker.objectWillChange.sink { [weak self] in
 diff --git a/Loop/Loop/View Models/TherapyInsightsViewModel.swift b/Loop/Loop/View Models/TherapyInsightsViewModel.swift
 new file mode 100644
 index 0000000..496e8d2
