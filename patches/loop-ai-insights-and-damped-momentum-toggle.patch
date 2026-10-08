@@ -1,0 +1,1944 @@
+diff --git a/Loop/Loop.xcodeproj/project.pbxproj b/Loop/Loop.xcodeproj/project.pbxproj
+index dfcb0b9..8ee52e7 100644
+--- a/Loop/Loop.xcodeproj/project.pbxproj
++++ b/Loop/Loop.xcodeproj/project.pbxproj
+@@ -7,6 +7,7 @@
+ 	objects = {
+ 
+ /* Begin PBXBuildFile section */
++		11CAE48F4D46EF1A53E81793 /* DampedMomentumSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 856B3C837D6C94B67FBB2763 /* DampedMomentumSelectionView.swift */; };
+ 		1419606428D9550400BA86E0 /* LoopKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 437AFEE6203688CF008C4892 /* LoopKitUI.framework */; };
+ 		1419606928D9554E00BA86E0 /* LoopKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 437AFEE6203688CF008C4892 /* LoopKitUI.framework */; };
+ 		1419606A28D955BC00BA86E0 /* MockKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C101947127DD473C004E7EB8 /* MockKitUI.framework */; };
+@@ -71,6 +72,7 @@
+ 		1DDE273E24AEA4B000796622 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DE09BA824A3E23F009EE9F9 /* SettingsView.swift */; };
+ 		1DDE274024AEA4F200796622 /* NotificationsCriticalAlertPermissionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DA46B5F2492E2E300D71A63 /* NotificationsCriticalAlertPermissionsView.swift */; };
+ 		1DFE9E172447B6270082C280 /* UserNotificationAlertSchedulerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DFE9E162447B6270082C280 /* UserNotificationAlertSchedulerTests.swift */; };
++		33B3BF676D93B39FB7BB8EDE /* TherapyInsightsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A312D32132CA4A516321962 /* TherapyInsightsViewModel.swift */; };
+ 		3ED3198A2EB659E600820BCF /* GlucoseLiveActivityConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ED319882EB659E600820BCF /* GlucoseLiveActivityConfiguration.swift */; };
+ 		3ED3198B2EB659E600820BCF /* ChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ED319872EB659E600820BCF /* ChartView.swift */; };
+ 		3ED3198C2EB659E600820BCF /* BasalViewActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ED319862EB659E600820BCF /* BasalViewActivity.swift */; };
+@@ -248,6 +250,7 @@
+ 		4FF4D0F81E1725B000846527 /* NibLoadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434F54561D287FDB002A9274 /* NibLoadable.swift */; };
+ 		4FF4D1001E18374700846527 /* WatchContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FF4D0FF1E18374700846527 /* WatchContext.swift */; };
+ 		4FF4D1011E18375000846527 /* WatchContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FF4D0FF1E18374700846527 /* WatchContext.swift */; };
++		7832EACB8ADD18A12273612E /* TherapyInsightsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4203C81558C711DC449A67AA /* TherapyInsightsDataSource.swift */; };
+ 		7D23667D21250C7E0028B67D /* LocalizedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D23667C21250C7E0028B67D /* LocalizedString.swift */; };
+ 		7E69CFFC2A16A77E00203CBD /* ResetLoopManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E69CFFB2A16A77E00203CBD /* ResetLoopManager.swift */; };
+ 		84AA81D32A4A27A3000B658B /* LoopWidgets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AA81D22A4A27A3000B658B /* LoopWidgets.swift */; };
+@@ -320,6 +323,8 @@
+ 		89F9119424358E4500ECCAF3 /* CarbAbsorptionTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F9119324358E4500ECCAF3 /* CarbAbsorptionTime.swift */; };
+ 		89F9119624358E6900ECCAF3 /* BolusPickerValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F9119524358E6900ECCAF3 /* BolusPickerValues.swift */; };
+ 		89FE21AD24AC57E30033F501 /* Collection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89FE21AC24AC57E30033F501 /* Collection.swift */; };
++		8DCE328F37C0F05BE72BD816 /* TherapyInsightsReportTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 259AEA221D3AC58A0B06C3D9 /* TherapyInsightsReportTests.swift */; };
++		9849B1B2F77F2B338C22AE10 /* TherapyInsightsAIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2F8644D25B950D39A02B81D /* TherapyInsightsAIClient.swift */; };
+ 		A90EF53C25DEF06200F32D61 /* PluginManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C16DA84122E8E112008624C2 /* PluginManager.swift */; };
+ 		A90EF54425DEF0A000F32D61 /* OSLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4374B5EE209D84BE00D17AA8 /* OSLog.swift */; };
+ 		A91D2A3F26CF0FF80023B075 /* IconTitleSubtitleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A91D2A3E26CF0FF80023B075 /* IconTitleSubtitleTableViewCell.swift */; };
+@@ -372,6 +377,7 @@
+ 		A9F703752489C9A000C98AD8 /* GlucoseStore+SimulatedCoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F703742489C9A000C98AD8 /* GlucoseStore+SimulatedCoreData.swift */; };
+ 		A9F703772489D8AA00C98AD8 /* PersistentDeviceLog+SimulatedCoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F703762489D8AA00C98AD8 /* PersistentDeviceLog+SimulatedCoreData.swift */; };
+ 		A9FB75F1252BE320004C7D3F /* BolusDosingDecision.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9FB75F0252BE320004C7D3F /* BolusDosingDecision.swift */; };
++		AF318BDC0658585644239C9F /* TherapyInsightsReport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16904E4C3037998BEBE571C3 /* TherapyInsightsReport.swift */; };
+ 		B4001CEE28CBBC82002FB414 /* AlertManagementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4001CED28CBBC82002FB414 /* AlertManagementView.swift */; };
+ 		B405E35924D2A75B00DD058D /* DerivedAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A966152923EA5A37005D8B29 /* DerivedAssets.xcassets */; };
+ 		B405E35A24D2B1A400DD058D /* HUDAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4F2C15961E09E94E00E160D4 /* HUDAssets.xcassets */; };
+@@ -498,13 +504,13 @@
+ 		C1F00C60285A802A006302C5 /* SwiftCharts in Frameworks */ = {isa = PBXBuildFile; productRef = C1F00C5F285A802A006302C5 /* SwiftCharts */; };
+ 		C1F00C78285A8256006302C5 /* SwiftCharts in Embed Frameworks */ = {isa = PBXBuildFile; productRef = C1F00C5F285A802A006302C5 /* SwiftCharts */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+ 		C1F2075C26D6F9B0007AB7EB /* AppExpirationAlerter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1F2075B26D6F9B0007AB7EB /* AppExpirationAlerter.swift */; };
+-		FADE0001000000000000DE02 /* DevelopmentBranchAlerter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADE0001000000000000DE01 /* DevelopmentBranchAlerter.swift */; };
+ 		C1F7822627CC056900C0919A /* SettingsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1F7822527CC056900C0919A /* SettingsManager.swift */; };
+ 		C1F8B243223E73FD00DD66CF /* BolusProgressTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1F8B1D122375E4200DD66CF /* BolusProgressTableViewCell.swift */; };
+ 		C1FB428C217806A400FAB378 /* StateColorPalette.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FB428B217806A300FAB378 /* StateColorPalette.swift */; };
+ 		C1FB428D21791D2500FAB378 /* PumpManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43C3B6F620BBCAA30026CAFA /* PumpManager.swift */; };
+ 		C1FB428F217921D600FAB378 /* PumpManagerUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FB428E217921D600FAB378 /* PumpManagerUI.swift */; };
+ 		C1FB4290217922A100FAB378 /* PumpManagerUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FB428E217921D600FAB378 /* PumpManagerUI.swift */; };
++		D481D2390F9D4DE00C778EDC /* TherapyInsightsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4698894C46A99C41E5C5B7E /* TherapyInsightsView.swift */; };
+ 		DD3DBD292A33AFE9000F8B5B /* IntegralRetrospectiveCorrectionSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3DBD282A33AFE9000F8B5B /* IntegralRetrospectiveCorrectionSelectionView.swift */; };
+ 		DDC389F62A2B61750066E2E8 /* ApplicationFactorStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDC389F52A2B61750066E2E8 /* ApplicationFactorStrategy.swift */; };
+ 		DDC389F82A2B620B0066E2E8 /* GlucoseBasedApplicationFactorStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDC389F72A2B620B0066E2E8 /* GlucoseBasedApplicationFactorStrategy.swift */; };
+@@ -590,6 +596,7 @@
+ 		E9C58A7E24DB529A00487A17 /* dynamic_glucose_effect_partially_observed.json in Resources */ = {isa = PBXBuildFile; fileRef = E9C58A7924DB529A00487A17 /* dynamic_glucose_effect_partially_observed.json */; };
+ 		E9C58A7F24DB529A00487A17 /* counteraction_effect_falling_glucose.json in Resources */ = {isa = PBXBuildFile; fileRef = E9C58A7A24DB529A00487A17 /* counteraction_effect_falling_glucose.json */; };
+ 		E9C58A8024DB529A00487A17 /* insulin_effect.json in Resources */ = {isa = PBXBuildFile; fileRef = E9C58A7B24DB529A00487A17 /* insulin_effect.json */; };
++		FADE0001000000000000DE02 /* DevelopmentBranchAlerter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADE0001000000000000DE01 /* DevelopmentBranchAlerter.swift */; };
+ /* End PBXBuildFile section */
+ 
+ /* Begin PBXContainerItemProxy section */
+@@ -781,6 +788,7 @@
+ 		14B1737028AEDBF6006CCD7C /* GlucoseView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlucoseView.swift; sourceTree = "<group>"; };
+ 		14B1737128AEDBF6006CCD7C /* LoopCircleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoopCircleView.swift; sourceTree = "<group>"; };
+ 		14D906F32A846510006EB79A /* FavoriteFoodsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteFoodsViewModel.swift; sourceTree = "<group>"; };
++		16904E4C3037998BEBE571C3 /* TherapyInsightsReport.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TherapyInsightsReport.swift; sourceTree = "<group>"; };
+ 		1D05219A2469E9DF000EBBDE /* StoredAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoredAlert.swift; sourceTree = "<group>"; };
+ 		1D05219C2469F1F5000EBBDE /* AlertStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertStore.swift; sourceTree = "<group>"; };
+ 		1D080CBC2473214A00356610 /* AlertStore.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = AlertStore.xcdatamodel; sourceTree = "<group>"; };
+@@ -807,6 +815,8 @@
+ 		1DC63E7325351BDF004605DA /* TrueTime.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TrueTime.framework; path = Carthage/Build/iOS/TrueTime.framework; sourceTree = "<group>"; };
+ 		1DE09BA824A3E23F009EE9F9 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+ 		1DFE9E162447B6270082C280 /* UserNotificationAlertSchedulerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserNotificationAlertSchedulerTests.swift; sourceTree = "<group>"; };
++		259AEA221D3AC58A0B06C3D9 /* TherapyInsightsReportTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TherapyInsightsReportTests.swift; sourceTree = "<group>"; };
++		2A312D32132CA4A516321962 /* TherapyInsightsViewModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TherapyInsightsViewModel.swift; sourceTree = "<group>"; };
+ 		3ED319862EB659E600820BCF /* BasalViewActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasalViewActivity.swift; sourceTree = "<group>"; };
+ 		3ED319872EB659E600820BCF /* ChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartView.swift; sourceTree = "<group>"; };
+ 		3ED319882EB659E600820BCF /* GlucoseLiveActivityConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlucoseLiveActivityConfiguration.swift; sourceTree = "<group>"; };
+@@ -820,6 +830,7 @@
+ 		3ED3199E2EB65AFE00820BCF /* LocalizedString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizedString.swift; sourceTree = "<group>"; };
+ 		3ED319A02EB65B4100820BCF /* Bootstrap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bootstrap.swift; sourceTree = "<group>"; };
+ 		3ED319A22EB65DA300820BCF /* LiveActivityManagerProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveActivityManagerProxy.swift; sourceTree = "<group>"; };
++		4203C81558C711DC449A67AA /* TherapyInsightsDataSource.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TherapyInsightsDataSource.swift; sourceTree = "<group>"; };
+ 		4302F4E01D4E9C8900F0FCAF /* TextFieldTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFieldTableViewController.swift; sourceTree = "<group>"; };
+ 		4302F4E21D4EA54200F0FCAF /* InsulinDeliveryTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InsulinDeliveryTableViewController.swift; sourceTree = "<group>"; };
+ 		430B29892041F54A00BA9F93 /* NSUserDefaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSUserDefaults.swift; sourceTree = "<group>"; };
+@@ -1068,6 +1079,7 @@
+ 		84AA81E62A4A4DEF000B658B /* PumpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PumpView.swift; sourceTree = "<group>"; };
+ 		84AB0A823008A62400A13446 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+ 		84D2879E2AC756C8007ED283 /* ContentMargin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentMargin.swift; sourceTree = "<group>"; };
++		856B3C837D6C94B67FBB2763 /* DampedMomentumSelectionView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DampedMomentumSelectionView.swift; sourceTree = "<group>"; };
+ 		891B508424342BE1005DA578 /* CarbAndBolusFlowViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarbAndBolusFlowViewModel.swift; sourceTree = "<group>"; };
+ 		892A5D29222EF60A008961AB /* MockKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; name = MockKit.framework; path = Carthage/Build/iOS/MockKit.framework; sourceTree = SOURCE_ROOT; };
+ 		892A5D2B222EF60A008961AB /* MockKitUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; name = MockKitUI.framework; path = Carthage/Build/iOS/MockKitUI.framework; sourceTree = SOURCE_ROOT; };
+@@ -1180,12 +1192,14 @@
+ 		A9F703742489C9A000C98AD8 /* GlucoseStore+SimulatedCoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GlucoseStore+SimulatedCoreData.swift"; sourceTree = "<group>"; };
+ 		A9F703762489D8AA00C98AD8 /* PersistentDeviceLog+SimulatedCoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PersistentDeviceLog+SimulatedCoreData.swift"; sourceTree = "<group>"; };
+ 		A9FB75F0252BE320004C7D3F /* BolusDosingDecision.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BolusDosingDecision.swift; sourceTree = "<group>"; };
++		B2F8644D25B950D39A02B81D /* TherapyInsightsAIClient.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TherapyInsightsAIClient.swift; sourceTree = "<group>"; };
+ 		B4001CED28CBBC82002FB414 /* AlertManagementView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertManagementView.swift; sourceTree = "<group>"; };
+ 		B40D07C6251A89D500C1C6D7 /* GlucoseDisplay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlucoseDisplay.swift; sourceTree = "<group>"; };
+ 		B42C951324A3C76000857C73 /* CGMStatusHUDViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CGMStatusHUDViewModel.swift; sourceTree = "<group>"; };
+ 		B42D124228D371C400E43D22 /* AlertMuter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertMuter.swift; sourceTree = "<group>"; };
+ 		B43CF07D29434EC4008A520B /* HowMuteAlertWorkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HowMuteAlertWorkView.swift; sourceTree = "<group>"; };
+ 		B43DA44024D9C12100CAFF4E /* DismissibleHostingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DismissibleHostingController.swift; sourceTree = "<group>"; };
++		B4698894C46A99C41E5C5B7E /* TherapyInsightsView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TherapyInsightsView.swift; sourceTree = "<group>"; };
+ 		B470F5832AB22B5100049695 /* StatefulPluggable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatefulPluggable.swift; sourceTree = "<group>"; };
+ 		B48B0BAB24900093009A48DE /* PumpStatusHUDView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PumpStatusHUDView.swift; sourceTree = "<group>"; };
+ 		B490A03C24D04F9400F509FA /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
+@@ -1319,7 +1333,6 @@
+ 		C1EE9E802A38D0FB0064784A /* BuildDetails.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = BuildDetails.plist; sourceTree = "<group>"; };
+ 		C1EF747128D6A44A00C8C083 /* CrashRecoveryManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrashRecoveryManager.swift; sourceTree = "<group>"; };
+ 		C1F2075B26D6F9B0007AB7EB /* AppExpirationAlerter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppExpirationAlerter.swift; sourceTree = "<group>"; };
+-		FADE0001000000000000DE01 /* DevelopmentBranchAlerter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DevelopmentBranchAlerter.swift; sourceTree = "<group>"; };
+ 		C1F48FF62995821600C8BD69 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+ 		C1F7822527CC056900C0919A /* SettingsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsManager.swift; sourceTree = "<group>"; };
+ 		C1F8B1D122375E4200DD66CF /* BolusProgressTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BolusProgressTableViewCell.swift; sourceTree = "<group>"; };
+@@ -1415,6 +1428,7 @@
+ 		F5E0BDD827E1D71E0033557E /* he */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = he; path = he.lproj/Main.strings; sourceTree = "<group>"; };
+ 		F5E0BDDA27E1D71F0033557E /* he */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = he; path = he.lproj/Localizable.strings; sourceTree = "<group>"; };
+ 		F5E0BDE327E1D7230033557E /* he */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = he; path = he.lproj/Localizable.strings; sourceTree = "<group>"; };
++		FADE0001000000000000DE01 /* DevelopmentBranchAlerter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DevelopmentBranchAlerter.swift; sourceTree = "<group>"; };
+ /* End PBXFileReference section */
+ 
+ /* Begin PBXFrameworksBuildPhase section */
+@@ -1571,6 +1585,7 @@
+ 				1D70C40026EC0F9D00C62570 /* SupportManagerTests.swift */,
+ 				A9F5F1F4251050EC00E7C8A4 /* ZipArchiveTests.swift */,
+ 				C1D476B32A8ED179002C1C87 /* LoopAlgorithmTests.swift */,
++				259AEA221D3AC58A0B06C3D9 /* TherapyInsightsReportTests.swift */,
+ 			);
+ 			path = Managers;
+ 			sourceTree = "<group>";
+@@ -1588,6 +1603,17 @@
+ 			path = Alerts;
+ 			sourceTree = "<group>";
+ 		};
++		34E4D462209F7AFEBBBAEFC2 /* Therapy Insights */ = {
++			isa = PBXGroup;
++			children = (
++				16904E4C3037998BEBE571C3 /* TherapyInsightsReport.swift */,
++				B2F8644D25B950D39A02B81D /* TherapyInsightsAIClient.swift */,
++				4203C81558C711DC449A67AA /* TherapyInsightsDataSource.swift */,
++			);
++			name = "Therapy Insights";
++			path = "Therapy Insights";
++			sourceTree = "<group>";
++		};
+ 		3ED319892EB659E600820BCF /* Live Activity */ = {
+ 			isa = PBXGroup;
+ 			children = (
+@@ -2001,6 +2027,8 @@
+ 				C1AF062229426300002C1B19 /* ManualGlucoseEntryRow.swift */,
+ 				DDC389FD2A2C4C830066E2E8 /* GlucoseBasedApplicationFactorSelectionView.swift */,
+ 				DD3DBD282A33AFE9000F8B5B /* IntegralRetrospectiveCorrectionSelectionView.swift */,
++				B4698894C46A99C41E5C5B7E /* TherapyInsightsView.swift */,
++				856B3C837D6C94B67FBB2763 /* DampedMomentumSelectionView.swift */,
+ 			);
+ 			path = Views;
+ 			sourceTree = "<group>";
+@@ -2046,6 +2074,7 @@
+ 				A96DAC2B2838F31200D94E38 /* SharedLogging.swift */,
+ 				7E69CFFB2A16A77E00203CBD /* ResetLoopManager.swift */,
+ 				84AA81E42A4A3981000B658B /* DeeplinkManager.swift */,
++				34E4D462209F7AFEBBBAEFC2 /* Therapy Insights */,
+ 			);
+ 			path = Managers;
+ 			sourceTree = "<group>";
+@@ -2358,6 +2387,7 @@
+ 				C174233B259BEB0F00399C9D /* ManualEntryDoseViewModel.swift */,
+ 				1DB619AB270BAD3D006C9D07 /* VersionUpdateViewModel.swift */,
+ 				3ED319952EB65A5C00820BCF /* LiveActivityManagementViewModel.swift */,
++				2A312D32132CA4A516321962 /* TherapyInsightsViewModel.swift */,
+ 			);
+ 			path = "View Models";
+ 			sourceTree = "<group>";
+@@ -3585,6 +3615,12 @@
+ 				7E69CFFC2A16A77E00203CBD /* ResetLoopManager.swift in Sources */,
+ 				B40D07C7251A89D500C1C6D7 /* GlucoseDisplay.swift in Sources */,
+ 				43C2FAE11EB656A500364AFF /* GlucoseEffectVelocity.swift in Sources */,
++				AF318BDC0658585644239C9F /* TherapyInsightsReport.swift in Sources */,
++				9849B1B2F77F2B338C22AE10 /* TherapyInsightsAIClient.swift in Sources */,
++				7832EACB8ADD18A12273612E /* TherapyInsightsDataSource.swift in Sources */,
++				33B3BF676D93B39FB7BB8EDE /* TherapyInsightsViewModel.swift in Sources */,
++				D481D2390F9D4DE00C778EDC /* TherapyInsightsView.swift in Sources */,
++				11CAE48F4D46EF1A53E81793 /* DampedMomentumSelectionView.swift in Sources */,
+ 			);
+ 			runOnlyForDeploymentPostprocessing = 0;
+ 		};
+@@ -3767,6 +3803,7 @@
+ 				C1900900252271BB00721625 /* SimpleBolusCalculatorTests.swift in Sources */,
+ 				A9C1719725366F780053BCBD /* WatchHistoricalGlucoseTest.swift in Sources */,
+ 				E93E86B224DDE21D00FF40C8 /* MockCarbStore.swift in Sources */,
++				8DCE328F37C0F05BE72BD816 /* TherapyInsightsReportTests.swift in Sources */,
+ 			);
+ 			runOnlyForDeploymentPostprocessing = 0;
+ 		};
+diff --git a/Loop/Loop/Managers/Therapy Insights/TherapyInsightsAIClient.swift b/Loop/Loop/Managers/Therapy Insights/TherapyInsightsAIClient.swift
+new file mode 100644
+index 0000000..59a9f3c
+--- /dev/null
++++ b/Loop/Loop/Managers/Therapy Insights/TherapyInsightsAIClient.swift	
+@@ -0,0 +1,238 @@
++//
++//  TherapyInsightsAIClient.swift
++//  Loop
++//
++//  Copyright © 2026 LoopKit Authors. All rights reserved.
++//
++
++import Foundation
++
++enum TherapyInsightsProvider: String, CaseIterable, Identifiable {
++    case claude
++    case deepSeek
++    case gitHubModels
++
++    var id: String { rawValue }
++
++    var displayName: String {
++        switch self {
++        case .claude: return "Claude (Anthropic)"
++        case .deepSeek: return "DeepSeek"
++        case .gitHubModels: return "GitHub Models (Copilot)"
++        }
++    }
++
++    var defaultModel: String {
++        switch self {
++        case .claude: return "claude-opus-5-5"
++        case .deepSeek: return "deepseek-chat"
++        case .gitHubModels: return "openai/gpt-4.1"
++        }
++    }
++
++    var apiKeyPlaceholder: String {
++        switch self {
++        case .claude: return "sk-ant-…"
++        case .deepSeek: return "sk-…"
++        case .gitHubModels: return "github_pat_…"
++        }
++    }
++
++    var apiKeyInstructions: String {
++        switch self {
++        case .claude:
++            return NSLocalizedString("Create an API key at console.anthropic.com → API Keys.", comment: "Instructions for obtaining a Claude API key")
++        case .deepSeek:
++            return NSLocalizedString("Create an API key at platform.deepseek.com → API keys.", comment: "Instructions for obtaining a DeepSeek API key")
++        case .gitHubModels:
++            return NSLocalizedString("GitHub Copilot has no public API for personal use; GitHub Models is the equivalent. Create a fine-grained personal access token at github.com → Settings → Developer settings with the \"Models: read\" permission.", comment: "Instructions for obtaining a GitHub Models token")
++        }
++    }
++
++    var endpoint: URL {
++        switch self {
++        case .claude: return URL(string: "https://api.anthropic.com/v1/messages")!
++        case .deepSeek: return URL(string: "https://api.deepseek.com/chat/completions")!
++        case .gitHubModels: return URL(string: "https://models.github.ai/inference/chat/completions")!
++        }
++    }
++}
++
++enum TherapyInsightsAIError: LocalizedError, Equatable {
++    case missingAPIKey
++    case http(status: Int, message: String)
++    case refused
++    case emptyResponse
++
++    var errorDescription: String? {
++        switch self {
++        case .missingAPIKey:
++            return NSLocalizedString("Enter an API key first.", comment: "Error when no AI API key is configured")
++        case .http(let status, let message):
++            return String(format: NSLocalizedString("The AI service returned an error (%1$d): %2$@", comment: "Error from AI service (1: HTTP status, 2: message)"), status, message)
++        case .refused:
++            return NSLocalizedString("The AI model declined to answer this request.", comment: "Error when the AI model refuses")
++        case .emptyResponse:
++            return NSLocalizedString("The AI service returned an empty response.", comment: "Error when the AI response has no text")
++        }
++    }
++}
++
++struct TherapyInsightsAIClient {
++    private let session: URLSession
++
++    init(session: URLSession? = nil) {
++        if let session {
++            self.session = session
++        } else {
++            // Analysis can take a few minutes
++            let configuration = URLSessionConfiguration.default
++            configuration.timeoutIntervalForRequest = 600
++            configuration.timeoutIntervalForResource = 900
++            self.session = URLSession(configuration: configuration)
++        }
++    }
++
++    func recommendations(provider: TherapyInsightsProvider, model: String, apiKey: String, system: String, prompt: String) async throws -> String {
++        let request = try Self.makeRequest(provider: provider, model: model, apiKey: apiKey, system: system, prompt: prompt)
++        let (data, response) = try await session.data(for: request)
++
++        if let http = response as? HTTPURLResponse, !(200..<300).contains(http.statusCode) {
++            throw TherapyInsightsAIError.http(status: http.statusCode, message: Self.errorMessage(from: data))
++        }
++
++        return try Self.parseResponse(provider: provider, data: data)
++    }
++
++    static func makeRequest(provider: TherapyInsightsProvider, model: String, apiKey: String, system: String, prompt: String) throws -> URLRequest {
++        let apiKey = apiKey.trimmingCharacters(in: .whitespacesAndNewlines)
++        guard !apiKey.isEmpty else {
++            throw TherapyInsightsAIError.missingAPIKey
++        }
++
++        var request = URLRequest(url: provider.endpoint)
++        request.httpMethod = "POST"
++        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
++
++        var body: [String: Any]
++        switch provider {
++        case .claude:
++            request.setValue(apiKey, forHTTPHeaderField: "x-api-key")
++            request.setValue("2023-06-01", forHTTPHeaderField: "anthropic-version")
++            body = [
++                "model": model,
++                "max_tokens": 16000,
++                "system": system,
++                "messages": [["role": "user", "content": prompt]]
++            ]
++            if supportsEffortAndFallbacks(claudeModel: model) {
++                body["output_config"] = ["effort": "high"]
++                // Re-run on another model server-side if a safety classifier declines the request
++                request.setValue("server-side-fallback-2026-07-01", forHTTPHeaderField: "anthropic-beta")
++                body["fallbacks"] = "default"
++            }
++        case .deepSeek, .gitHubModels:
++            request.setValue("Bearer \(apiKey)", forHTTPHeaderField: "Authorization")
++            if provider == .gitHubModels {
++                request.setValue("application/vnd.github+json", forHTTPHeaderField: "Accept")
++                request.setValue("2022-11-28", forHTTPHeaderField: "X-GitHub-Api-Version")
++            }
++            body = [
++                "model": model,
++                "messages": [
++                    ["role": "system", "content": system],
++                    ["role": "user", "content": prompt]
++                ]
++            ]
++            if provider == .deepSeek {
++                body["max_tokens"] = 8000
++            }
++        }
++
++        request.httpBody = try JSONSerialization.data(withJSONObject: body)
++        return request
++    }
++
++    private static func supportsEffortAndFallbacks(claudeModel model: String) -> Bool {
++        model.hasPrefix("claude-opus-5") || model.hasPrefix("claude-fable-5") || model == "claude-sonnet-5-5"
++    }
++
++    static func parseResponse(provider: TherapyInsightsProvider, data: Data) throws -> String {
++        let json = try JSONSerialization.jsonObject(with: data) as? [String: Any] ?? [:]
++
++        let text: String
++        switch provider {
++        case .claude:
++            if json["stop_reason"] as? String == "refusal" {
++                throw TherapyInsightsAIError.refused
++            }
++            let blocks = json["content"] as? [[String: Any]] ?? []
++            text = blocks.filter { $0["type"] as? String == "text" }.compactMap { $0["text"] as? String }.joined()
++        case .deepSeek, .gitHubModels:
++            let choices = json["choices"] as? [[String: Any]] ?? []
++            let message = choices.first?["message"] as? [String: Any]
++            text = message?["content"] as? String ?? ""
++        }
++
++        guard !text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty else {
++            throw TherapyInsightsAIError.emptyResponse
++        }
++        return text
++    }
++
++    private static func errorMessage(from data: Data) -> String {
++        if let json = try? JSONSerialization.jsonObject(with: data) as? [String: Any] {
++            if let error = json["error"] as? [String: Any], let message = error["message"] as? String {
++                return message
++            }
++            if let message = json["message"] as? String {
++                return message
++            }
++        }
++        return String(decoding: data.prefix(500), as: UTF8.self)
++    }
++}
++
++enum TherapyInsightsPrompt {
++    static let system = """
++    You are an experienced diabetes educator reviewing data from a person with type 1 diabetes who uses Loop, \
++    an open-source automated insulin delivery app. Loop adjusts insulin every 5 minutes using the person's therapy settings \
++    (basal rates, insulin sensitivity factor, carb ratios, correction range), so mis-set values show up as patterns in how \
++    much Loop has to deviate from them.
++
++    How to read the data:
++    - Basal: compare deliveredBasalUnitsPerHour and automaticBolusUnitsPerHour to scheduledBasalUnitsPerHour per hour of day. \
++    Loop consistently delivering well above schedule at certain hours (with glucose still high) suggests basal is too low there; \
++    consistently well below schedule or suspended (with lows) suggests basal is too high. Remember insulin acts with a 1–2 h delay, \
++    so changes should be applied 1–2 h before the pattern. Overnight drift without carbs is the cleanest basal signal.
++    - Insulin sensitivity factor: compare medianObservedSensitivityMgdLPerUnit with the scheduled value. This is approximate \
++    (insulin on board and activity are not controlled), so weigh it by the number of episodes.
++    - Carb ratio: large rises after meals that end high after 3 h suggest a stronger ratio (fewer g/U); \
++    lows within 4 h after meals suggest a weaker ratio (more g/U). Consider whether a pattern may be explained by basal instead.
++    - Glucose metrics follow the international consensus targets: time in range 70–180 mg/dL > 70%, below 70 < 4%, below 54 < 1%, CV ≤ 36%.
++
++    Rules:
++    - Only recommend changes that the data supports, and say how strong the evidence is. If there is too little data, say so.
++    - Recommend small, incremental changes (typically 5–10%, at most 20%), one setting type at a time, starting with whatever causes lows. \
++    Give concrete proposed values next to current values, by time of day.
++    - Never recommend changes that increase hypoglycemia risk when time below range is already above target.
++    - These are suggestions to discuss with the person's diabetes care team, not medical instructions. Say so once, briefly.
++
++    Format the answer in Markdown with these sections: Summary, Basal rates, Insulin sensitivity, Carb ratios, \
++    Correction range and other settings, What to watch next. Keep it concise.
++    """
++
++    static func user(reportJSON: String, displayGlucoseUnit: String, language: String) -> String {
++        """
++        Here is a summary of my Loop data. All glucose values in the data are in mg/dL; insulin in units (U); carbs in grams.
++
++        <loop_data>
++        \(reportJSON)
++        </loop_data>
++
++        Please analyze it and recommend changes to my therapy settings. \
++        I use \(displayGlucoseUnit) for glucose, so express glucose values and insulin sensitivity in \(displayGlucoseUnit) (1 mmol/L = 18.02 mg/dL). \
++        Write the answer in this language: \(language).
++        """
++    }
++}
+diff --git a/Loop/Loop/Managers/Therapy Insights/TherapyInsightsDataSource.swift b/Loop/Loop/Managers/Therapy Insights/TherapyInsightsDataSource.swift
+new file mode 100644
+index 0000000..f348c6f
+--- /dev/null
++++ b/Loop/Loop/Managers/Therapy Insights/TherapyInsightsDataSource.swift	
+@@ -0,0 +1,47 @@
++//
++//  TherapyInsightsDataSource.swift
++//  Loop
++//
++//  Copyright © 2026 LoopKit Authors. All rights reserved.
++//
++
++import Foundation
++import HealthKit
++import LoopKit
++
++protocol TherapyInsightsDataSource: AnyObject {
++    func therapyInsightsInput(days: Int) async throws -> TherapyInsightsInput
++}
++
++extension DeviceDataManager: TherapyInsightsDataSource {
++    func therapyInsightsInput(days: Int) async throws -> TherapyInsightsInput {
++        let end = Date()
++        let start = end.addingTimeInterval(-.days(Double(days)))
++
++        async let glucoseSamples = glucoseStore.getGlucoseSamples(start: start, end: end)
++        async let doses = doseStore.getDoses(start: start, end: end)
++        async let carbEntries = carbStore.getCarbEntries(start: start, end: end)
++
++        let (therapySettings, dosingStrategy, displayUnit) = await MainActor.run {
++            (loopManager.therapySettings, loopManager.settings.automaticDosingStrategy, displayGlucosePreference.unit)
++        }
++
++        return TherapyInsightsInput(
++            start: start,
++            end: end,
++            glucose: try await glucoseSamples
++                .filter { !$0.isDisplayOnly }
++                .map { .init(date: $0.startDate, mgdL: $0.quantity.doubleValue(for: .milligramsPerDeciliter)) },
++            doses: try await doses,
++            carbs: try await carbEntries.map { .init(date: $0.startDate, grams: $0.quantity.doubleValue(for: .gram())) },
++            therapySettings: therapySettings,
++            automaticDosingStrategy: dosingStrategy,
++            displayGlucoseUnit: displayUnit,
++            algorithmExperiments: [
++                "integralRetrospectiveCorrection": UserDefaults.standard.integralRetrospectiveCorrectionEnabled,
++                "glucoseBasedPartialApplication": UserDefaults.standard.glucoseBasedApplicationFactorEnabled,
++                "dampedMomentum": GlucoseMath.isDampedMomentumEnabled
++            ]
++        )
++    }
++}
+diff --git a/Loop/Loop/Managers/Therapy Insights/TherapyInsightsReport.swift b/Loop/Loop/Managers/Therapy Insights/TherapyInsightsReport.swift
+new file mode 100644
+index 0000000..2e35a71
+--- /dev/null
++++ b/Loop/Loop/Managers/Therapy Insights/TherapyInsightsReport.swift	
+@@ -0,0 +1,623 @@
++//
++//  TherapyInsightsReport.swift
++//  Loop
++//
++//  Copyright © 2026 LoopKit Authors. All rights reserved.
++//
++
++import Foundation
++import HealthKit
++import LoopKit
++
++/// Raw history the therapy insights report is computed from
++struct TherapyInsightsInput {
++    struct GlucoseReading: Equatable {
++        let date: Date
++        let mgdL: Double
++    }
++
++    struct CarbEntry: Equatable {
++        let date: Date
++        let grams: Double
++    }
++
++    var start: Date
++    var end: Date
++    var glucose: [GlucoseReading]
++    var doses: [DoseEntry]
++    var carbs: [CarbEntry]
++    var therapySettings: TherapySettings
++    var automaticDosingStrategy: AutomaticDosingStrategy?
++    var displayGlucoseUnit: HKUnit
++    var algorithmExperiments: [String: Bool]
++    var calendar: Calendar = .current
++
++    var displayGlucoseUnitName: String {
++        displayGlucoseUnit == .millimolesPerLiter ? "mmol/L" : "mg/dL"
++    }
++}
++
++/// A compact, de-identified summary of glucose, insulin and carb history, used as the input for AI analysis.
++///
++/// All glucose values are in mg/dL, insulin in U, carbs in g.
++struct TherapyInsightsReport: Codable, Equatable {
++    struct Period: Codable, Equatable {
++        var start: Date
++        var end: Date
++        var days: Double
++        var cgmCoveragePercent: Double
++    }
++
++    struct GlucoseSummary: Codable, Equatable {
++        var readings: Int
++        var meanMgdL: Double
++        var standardDeviationMgdL: Double
++        var coefficientOfVariationPercent: Double
++        var glucoseManagementIndicatorPercent: Double
++        var percentBelow54: Double
++        var percentBelow70: Double
++        var percentInRange70To180: Double
++        var percentAbove180: Double
++        var percentAbove250: Double
++        /// Runs of at least 15 minutes below 70 mg/dL
++        var hypoglycemiaEvents: Int
++    }
++
++    struct HourlyProfile: Codable, Equatable {
++        var hour: Int
++        var medianMgdL: Double?
++        var p10MgdL: Double?
++        var p90MgdL: Double?
++        var percentBelow70: Double?
++        var percentAbove180: Double?
++        var scheduledBasalUnitsPerHour: Double?
++        /// Basal actually delivered, including Loop temp basals and suspensions
++        var deliveredBasalUnitsPerHour: Double?
++        var automaticBolusUnitsPerHour: Double?
++    }
++
++    struct InsulinSummary: Codable, Equatable {
++        var averageTotalDailyDose: Double
++        var averageDailyDeliveredBasal: Double
++        var averageDailyScheduledBasal: Double
++        var averageDailyManualBolus: Double
++        var averageDailyAutomaticBolus: Double
++        var averageDailyCarbsGrams: Double
++    }
++
++    struct MealBlock: Codable, Equatable {
++        var name: String
++        var meals: Int
++        var medianCarbsGrams: Double?
++        var medianScheduledCarbRatio: Double?
++        var medianStartMgdL: Double?
++        var medianPeakRiseMgdL: Double?
++        var medianChangeAfter3hMgdL: Double?
++        var percentFollowedByLowWithin4h: Double?
++    }
++
++    struct CorrectionSummary: Codable, Equatable {
++        /// Manual boluses ≥ 0.5 U, glucose ≥ 150 mg/dL, no carbs from 1 h before to 4 h after
++        var episodes: Int
++        /// Glucose drop over 4 h divided by net insulin (boluses + basal above schedule) in that window
++        var medianObservedSensitivityMgdLPerUnit: Double?
++        var medianScheduledSensitivityMgdLPerUnit: Double?
++    }
++
++    struct OvernightSummary: Codable, Equatable {
++        /// Nights without carbs or manual boluses from 21:00 to 06:00
++        var nights: Int
++        /// Glucose at 06:00 minus glucose at 00:00
++        var medianDriftMgdL: Double?
++        /// Insulin delivered by Loop (basal + automatic boluses) relative to scheduled basal, 00:00–06:00
++        var medianDeliveredToScheduledBasalPercent: Double?
++    }
++
++    struct ScheduleEntry: Codable, Equatable {
++        var start: String
++        var value: Double
++    }
++
++    struct RangeEntry: Codable, Equatable {
++        var start: String
++        var minimum: Double
++        var maximum: Double
++    }
++
++    struct Settings: Codable, Equatable {
++        var displayGlucoseUnit: String
++        var basalRateUnitsPerHour: [ScheduleEntry]
++        var insulinSensitivityMgdLPerUnit: [ScheduleEntry]
++        var carbRatioGramsPerUnit: [ScheduleEntry]
++        var correctionRangeMgdL: [RangeEntry]
++        var suspendThresholdMgdL: Double?
++        var maximumBasalRateUnitsPerHour: Double?
++        var maximumBolusUnits: Double?
++        var insulinModel: String?
++        var dosingStrategy: String?
++        var algorithmExperiments: [String: Bool]
++    }
++
++    var period: Period
++    var glucose: GlucoseSummary?
++    var hourly: [HourlyProfile]
++    var insulin: InsulinSummary
++    var meals: [MealBlock]
++    var corrections: CorrectionSummary
++    var overnight: OvernightSummary
++    var settings: Settings
++}
++
++extension TherapyInsightsReport {
++    func jsonString() throws -> String {
++        let encoder = JSONEncoder()
++        encoder.outputFormatting = [.prettyPrinted, .sortedKeys]
++        encoder.dateEncodingStrategy = .iso8601
++        return String(decoding: try encoder.encode(self), as: UTF8.self)
++    }
++}
++
++// MARK: - Computation
++
++extension TherapyInsightsReport {
++    private static let slot: TimeInterval = .minutes(5)
++
++    init(input: TherapyInsightsInput) {
++        let builder = Builder(input: input)
++
++        self.init(
++            period: builder.period(),
++            glucose: builder.glucoseSummary(),
++            hourly: builder.hourlyProfiles(),
++            insulin: builder.insulinSummary(),
++            meals: builder.mealBlocks(),
++            corrections: builder.correctionSummary(),
++            overnight: builder.overnightSummary(),
++            settings: builder.settings()
++        )
++    }
++
++    /// Precomputes 5-minute timelines shared by the individual summaries
++    private struct Builder {
++        let input: TherapyInsightsInput
++        let glucose: [TherapyInsightsInput.GlucoseReading]
++        let boluses: [DoseEntry]
++        let carbs: [TherapyInsightsInput.CarbEntry]
++        let slotStarts: [Date]
++        let scheduledBasal: [Double?]
++        let deliveredBasal: [Double?]
++        var calendar: Calendar { input.calendar }
++        var days: Double { max(input.end.timeIntervalSince(input.start) / .days(1), 1.0 / 24) }
++
++        init(input: TherapyInsightsInput) {
++            self.input = input
++            glucose = input.glucose.filter { $0.date >= input.start && $0.date <= input.end }.sorted { $0.date < $1.date }
++            boluses = input.doses.filter { $0.type == .bolus && $0.startDate >= input.start && $0.startDate <= input.end }.sorted { $0.startDate < $1.startDate }
++            carbs = input.carbs.filter { $0.date >= input.start && $0.date <= input.end }.sorted { $0.date < $1.date }
++
++            var slotStarts: [Date] = []
++            var date = input.start
++            while date < input.end {
++                slotStarts.append(date)
++                date = date.addingTimeInterval(TherapyInsightsReport.slot)
++            }
++            self.slotStarts = slotStarts
++
++            let basalSchedule = input.therapySettings.basalRateSchedule
++            scheduledBasal = slotStarts.map { basalSchedule?.value(at: $0.addingTimeInterval(TherapyInsightsReport.slot / 2)) }
++            deliveredBasal = Builder.deliveredBasalRates(slotStarts: slotStarts, doses: input.doses, scheduled: scheduledBasal)
++        }
++
++        /// The basal rate in effect at the middle of each slot: the most recently started basal-type dose covering it, otherwise the scheduled rate.
++        private static func deliveredBasalRates(slotStarts: [Date], doses: [DoseEntry], scheduled: [Double?]) -> [Double?] {
++            let basalDoses = doses.filter { [.basal, .tempBasal, .suspend].contains($0.type) && $0.endDate > $0.startDate }.sorted { $0.startDate < $1.startDate }
++            var nextIndex = 0
++            var active: [DoseEntry] = []
++
++            return slotStarts.enumerated().map { index, slotStart in
++                let midpoint = slotStart.addingTimeInterval(TherapyInsightsReport.slot / 2)
++                while nextIndex < basalDoses.count, basalDoses[nextIndex].startDate <= midpoint {
++                    active.append(basalDoses[nextIndex])
++                    nextIndex += 1
++                }
++                active.removeAll { $0.endDate <= midpoint }
++
++                guard let dose = active.last else {
++                    return scheduled[index]
++                }
++                if dose.type == .suspend {
++                    return 0
++                }
++                let hours = dose.endDate.timeIntervalSince(dose.startDate).hours
++                if let delivered = dose.deliveredUnits, hours > 0 {
++                    return delivered / hours
++                }
++                return dose.unitsPerHour
++            }
++        }
++
++        // MARK: Lookups
++
++        func glucose(near date: Date, tolerance: TimeInterval = .minutes(10)) -> Double? {
++            var low = 0
++            var high = glucose.count
++            while low < high {
++                let mid = (low + high) / 2
++                if glucose[mid].date < date {
++                    low = mid + 1
++                } else {
++                    high = mid
++                }
++            }
++            let candidates = [low - 1, low].filter { glucose.indices.contains($0) }
++            guard let best = candidates.min(by: { abs(glucose[$0].date.timeIntervalSince(date)) < abs(glucose[$1].date.timeIntervalSince(date)) }),
++                  abs(glucose[best].date.timeIntervalSince(date)) <= tolerance
++            else {
++                return nil
++            }
++            return glucose[best].mgdL
++        }
++
++        func glucose(from start: Date, to end: Date) -> [Double] {
++            glucose.filter { $0.date >= start && $0.date <= end }.map(\.mgdL)
++        }
++
++        func bolusUnits(_ dose: DoseEntry) -> Double {
++            dose.deliveredUnits ?? dose.programmedUnits
++        }
++
++        func isAutomatic(_ dose: DoseEntry) -> Bool {
++            dose.automatic == true
++        }
++
++        func carbs(from start: Date, to end: Date) -> [TherapyInsightsInput.CarbEntry] {
++            carbs.filter { $0.date >= start && $0.date <= end }
++        }
++
++        func manualBoluses(from start: Date, to end: Date) -> [DoseEntry] {
++            boluses.filter { !isAutomatic($0) && $0.startDate >= start && $0.startDate <= end }
++        }
++
++        func slotIndices(from start: Date, to end: Date) -> Range<Int> {
++            let lower = max(0, Int((start.timeIntervalSince(input.start) / TherapyInsightsReport.slot).rounded(.down)))
++            let upper = min(slotStarts.count, Int((end.timeIntervalSince(input.start) / TherapyInsightsReport.slot).rounded(.down)))
++            return lower..<max(lower, upper)
++        }
++
++        /// Units delivered as basal minus units scheduled, over the slots in the window
++        func basalDeviationUnits(from start: Date, to end: Date) -> Double? {
++            var total = 0.0
++            for index in slotIndices(from: start, to: end) {
++                guard let delivered = deliveredBasal[index], let scheduled = scheduledBasal[index] else {
++                    return nil
++                }
++                total += (delivered - scheduled) * TherapyInsightsReport.slot.hours
++            }
++            return total
++        }
++
++        // MARK: Summaries
++
++        func period() -> Period {
++            let expectedReadings = input.end.timeIntervalSince(input.start) / TherapyInsightsReport.slot
++            return Period(
++                start: input.start,
++                end: input.end,
++                days: days.rounded(to: 1),
++                cgmCoveragePercent: expectedReadings > 0 ? min(100, Double(glucose.count) / expectedReadings * 100).rounded(to: 1) : 0
++            )
++        }
++
++        func glucoseSummary() -> GlucoseSummary? {
++            let values = glucose.map(\.mgdL)
++            guard !values.isEmpty else {
++                return nil
++            }
++            let mean = values.reduce(0, +) / Double(values.count)
++            let variance = values.reduce(0) { $0 + pow($1 - mean, 2) } / Double(values.count)
++            let standardDeviation = variance.squareRoot()
++
++            return GlucoseSummary(
++                readings: values.count,
++                meanMgdL: mean.rounded(to: 0),
++                standardDeviationMgdL: standardDeviation.rounded(to: 0),
++                coefficientOfVariationPercent: (standardDeviation / mean * 100).rounded(to: 1),
++                glucoseManagementIndicatorPercent: (3.31 + 0.02392 * mean).rounded(to: 1),
++                percentBelow54: values.percent { $0 < 54 },
++                percentBelow70: values.percent { $0 < 70 },
++                percentInRange70To180: values.percent { $0 >= 70 && $0 <= 180 },
++                percentAbove180: values.percent { $0 > 180 },
++                percentAbove250: values.percent { $0 > 250 },
++                hypoglycemiaEvents: hypoglycemiaEvents()
++            )
++        }
++
++        func hypoglycemiaEvents() -> Int {
++            var events = 0
++            var runStart: Date?
++            var previous: Date?
++            var counted = false
++
++            for reading in glucose {
++                if let previousDate = previous, reading.date.timeIntervalSince(previousDate) > .minutes(15) {
++                    runStart = nil
++                }
++                if reading.mgdL < 70 {
++                    if runStart == nil {
++                        runStart = reading.date
++                        counted = false
++                    }
++                    if let start = runStart, !counted, reading.date.timeIntervalSince(start) >= .minutes(15) {
++                        events += 1
++                        counted = true
++                    }
++                } else {
++                    runStart = nil
++                }
++                previous = reading.date
++            }
++            return events
++        }
++
++        func hourlyProfiles() -> [HourlyProfile] {
++            var glucoseByHour = [[Double]](repeating: [], count: 24)
++            for reading in glucose {
++                glucoseByHour[calendar.component(.hour, from: reading.date)].append(reading.mgdL)
++            }
++
++            var scheduledByHour = [[Double]](repeating: [], count: 24)
++            var deliveredByHour = [[Double]](repeating: [], count: 24)
++            for (index, slotStart) in slotStarts.enumerated() {
++                let hour = calendar.component(.hour, from: slotStart)
++                if let scheduled = scheduledBasal[index] {
++                    scheduledByHour[hour].append(scheduled)
++                }
++                if let delivered = deliveredBasal[index] {
++                    deliveredByHour[hour].append(delivered)
++                }
++            }
++
++            var automaticBolusByHour = [Double](repeating: 0, count: 24)
++            for bolus in boluses where isAutomatic(bolus) {
++                automaticBolusByHour[calendar.component(.hour, from: bolus.startDate)] += bolusUnits(bolus)
++            }
++
++            return (0..<24).map { hour in
++                let values = glucoseByHour[hour].sorted()
++                return HourlyProfile(
++                    hour: hour,
++                    medianMgdL: values.percentile(0.5)?.rounded(to: 0),
++                    p10MgdL: values.percentile(0.1)?.rounded(to: 0),
++                    p90MgdL: values.percentile(0.9)?.rounded(to: 0),
++                    percentBelow70: values.isEmpty ? nil : values.percent { $0 < 70 },
++                    percentAbove180: values.isEmpty ? nil : values.percent { $0 > 180 },
++                    scheduledBasalUnitsPerHour: scheduledByHour[hour].mean?.rounded(to: 2),
++                    deliveredBasalUnitsPerHour: deliveredByHour[hour].mean?.rounded(to: 2),
++                    automaticBolusUnitsPerHour: (automaticBolusByHour[hour] / days).rounded(to: 2)
++                )
++            }
++        }
++
++        func insulinSummary() -> InsulinSummary {
++            let slotHours = TherapyInsightsReport.slot.hours
++            let delivered = deliveredBasal.compactMap { $0 }.reduce(0) { $0 + $1 * slotHours }
++            let scheduled = scheduledBasal.compactMap { $0 }.reduce(0) { $0 + $1 * slotHours }
++            let manual = boluses.filter { !isAutomatic($0) }.reduce(0) { $0 + bolusUnits($1) }
++            let automatic = boluses.filter { isAutomatic($0) }.reduce(0) { $0 + bolusUnits($1) }
++            let grams = carbs.reduce(0) { $0 + $1.grams }
++
++            return InsulinSummary(
++                averageTotalDailyDose: ((delivered + manual + automatic) / days).rounded(to: 1),
++                averageDailyDeliveredBasal: (delivered / days).rounded(to: 1),
++                averageDailyScheduledBasal: (scheduled / days).rounded(to: 1),
++                averageDailyManualBolus: (manual / days).rounded(to: 1),
++                averageDailyAutomaticBolus: (automatic / days).rounded(to: 1),
++                averageDailyCarbsGrams: (grams / days).rounded(to: 0)
++            )
++        }
++
++        static func mealBlockName(hour: Int) -> String {
++            switch hour {
++            case 4..<10: return "breakfast (04-10)"
++            case 10..<15: return "lunch (10-15)"
++            case 15..<21: return "dinner (15-21)"
++            default: return "late (21-04)"
++            }
++        }
++
++        func mealBlocks() -> [MealBlock] {
++            struct Meal {
++                var grams: Double
++                var carbRatio: Double?
++                var start: Double?
++                var peakRise: Double?
++                var changeAfter3h: Double?
++                var lowWithin4h: Bool
++            }
++
++            var mealsByBlock: [String: [Meal]] = [:]
++            var previousMealDate: Date?
++
++            for entry in carbs where entry.grams >= 10 {
++                defer { previousMealDate = entry.date }
++                // Entries shortly after another meal are treated as part of it
++                if let previous = previousMealDate, entry.date.timeIntervalSince(previous) < .hours(1) {
++                    continue
++                }
++                let grams = carbs(from: entry.date, to: entry.date.addingTimeInterval(.hours(1) - 1)).reduce(0) { $0 + $1.grams }
++                let start = glucose(near: entry.date)
++                let window = glucose(from: entry.date, to: entry.date.addingTimeInterval(.hours(3)))
++                let after3h = glucose(near: entry.date.addingTimeInterval(.hours(3)))
++                let lowWithin4h = glucose(from: entry.date, to: entry.date.addingTimeInterval(.hours(4))).contains { $0 < 70 }
++
++                let meal = Meal(
++                    grams: grams,
++                    carbRatio: input.therapySettings.carbRatioSchedule?.value(at: entry.date),
++                    start: start,
++                    peakRise: start.flatMap { start in window.max().map { $0 - start } },
++                    changeAfter3h: start.flatMap { start in after3h.map { $0 - start } },
++                    lowWithin4h: lowWithin4h
++                )
++                mealsByBlock[Builder.mealBlockName(hour: calendar.component(.hour, from: entry.date)), default: []].append(meal)
++            }
++
++            return ["breakfast (04-10)", "lunch (10-15)", "dinner (15-21)", "late (21-04)"].compactMap { name in
++                guard let meals = mealsByBlock[name], !meals.isEmpty else {
++                    return nil
++                }
++                return MealBlock(
++                    name: name,
++                    meals: meals.count,
++                    medianCarbsGrams: meals.map(\.grams).sorted().percentile(0.5)?.rounded(to: 0),
++                    medianScheduledCarbRatio: meals.compactMap(\.carbRatio).sorted().percentile(0.5)?.rounded(to: 1),
++                    medianStartMgdL: meals.compactMap(\.start).sorted().percentile(0.5)?.rounded(to: 0),
++                    medianPeakRiseMgdL: meals.compactMap(\.peakRise).sorted().percentile(0.5)?.rounded(to: 0),
++                    medianChangeAfter3hMgdL: meals.compactMap(\.changeAfter3h).sorted().percentile(0.5)?.rounded(to: 0),
++                    percentFollowedByLowWithin4h: meals.map(\.lowWithin4h).percent { $0 }
++                )
++            }
++        }
++
++        func correctionSummary() -> CorrectionSummary {
++            let window: TimeInterval = .hours(4)
++            var observed: [Double] = []
++            var scheduled: [Double] = []
++            let sensitivitySchedule = input.therapySettings.insulinSensitivitySchedule
++
++            for bolus in boluses where !isAutomatic(bolus) && bolusUnits(bolus) >= 0.5 {
++                let date = bolus.startDate
++                let end = date.addingTimeInterval(window)
++                guard end <= input.end,
++                      carbs(from: date.addingTimeInterval(.hours(-1)), to: end).isEmpty,
++                      let startGlucose = glucose(near: date), startGlucose >= 150,
++                      let endGlucose = glucose(near: end),
++                      let basalDeviation = basalDeviationUnits(from: date, to: end)
++                else {
++                    continue
++                }
++                let bolusTotal = boluses.filter { $0.startDate >= date && $0.startDate < end }.reduce(0) { $0 + bolusUnits($1) }
++                let netInsulin = bolusTotal + basalDeviation
++                guard netInsulin >= 0.5 else {
++                    continue
++                }
++                observed.append((startGlucose - endGlucose) / netInsulin)
++                if let schedule = sensitivitySchedule {
++                    scheduled.append(HKQuantity(unit: schedule.unit, doubleValue: schedule.value(at: date)).doubleValue(for: .milligramsPerDeciliter))
++                }
++            }
++
++            return CorrectionSummary(
++                episodes: observed.count,
++                medianObservedSensitivityMgdLPerUnit: observed.sorted().percentile(0.5)?.rounded(to: 0),
++                medianScheduledSensitivityMgdLPerUnit: scheduled.sorted().percentile(0.5)?.rounded(to: 0)
++            )
++        }
++
++        func overnightSummary() -> OvernightSummary {
++            var drifts: [Double] = []
++            var deliveredPercents: [Double] = []
++            var day = calendar.startOfDay(for: input.start)
++
++            while day < input.end {
++                defer { day = calendar.date(byAdding: .day, value: 1, to: day) ?? input.end }
++                guard let morning = calendar.date(byAdding: .hour, value: 6, to: day),
++                      morning <= input.end,
++                      let evening = calendar.date(byAdding: .hour, value: -3, to: day),
++                      evening >= input.start,
++                      carbs(from: evening, to: morning).isEmpty,
++                      manualBoluses(from: evening, to: morning).isEmpty,
++                      let midnightGlucose = glucose(near: day),
++                      let morningGlucose = glucose(near: morning)
++                else {
++                    continue
++                }
++                drifts.append(morningGlucose - midnightGlucose)
++
++                let indices = slotIndices(from: day, to: morning)
++                let scheduledUnits = indices.compactMap { scheduledBasal[$0] }.reduce(0) { $0 + $1 * TherapyInsightsReport.slot.hours }
++                let deliveredUnits = indices.compactMap { deliveredBasal[$0] }.reduce(0) { $0 + $1 * TherapyInsightsReport.slot.hours }
++                let automaticUnits = boluses.filter { isAutomatic($0) && $0.startDate >= day && $0.startDate < morning }.reduce(0) { $0 + bolusUnits($1) }
++                if scheduledUnits > 0 {
++                    deliveredPercents.append((deliveredUnits + automaticUnits) / scheduledUnits * 100)
++                }
++            }
++
++            return OvernightSummary(
++                nights: drifts.count,
++                medianDriftMgdL: drifts.sorted().percentile(0.5)?.rounded(to: 0),
++                medianDeliveredToScheduledBasalPercent: deliveredPercents.sorted().percentile(0.5)?.rounded(to: 0)
++            )
++        }
++
++        func settings() -> Settings {
++            let therapy = input.therapySettings
++            let mgdL = HKUnit.milligramsPerDeciliter
++
++            func timeString(_ startTime: TimeInterval) -> String {
++                let minutes = Int(startTime / 60)
++                return String(format: "%02d:%02d", minutes / 60, minutes % 60)
++            }
++
++            func convert(_ value: Double, from unit: HKUnit) -> Double {
++                HKQuantity(unit: unit, doubleValue: value).doubleValue(for: mgdL)
++            }
++
++            return Settings(
++                displayGlucoseUnit: input.displayGlucoseUnitName,
++                basalRateUnitsPerHour: therapy.basalRateSchedule?.items.map { ScheduleEntry(start: timeString($0.startTime), value: $0.value.rounded(to: 3)) } ?? [],
++                insulinSensitivityMgdLPerUnit: therapy.insulinSensitivitySchedule.map { schedule in
++                    schedule.items.map { ScheduleEntry(start: timeString($0.startTime), value: convert($0.value, from: schedule.unit).rounded(to: 1)) }
++                } ?? [],
++                carbRatioGramsPerUnit: therapy.carbRatioSchedule?.items.map { ScheduleEntry(start: timeString($0.startTime), value: $0.value.rounded(to: 1)) } ?? [],
++                correctionRangeMgdL: therapy.glucoseTargetRangeSchedule.map { schedule in
++                    schedule.items.map {
++                        RangeEntry(start: timeString($0.startTime),
++                                   minimum: convert($0.value.minValue, from: schedule.unit).rounded(to: 0),
++                                   maximum: convert($0.value.maxValue, from: schedule.unit).rounded(to: 0))
++                    }
++                } ?? [],
++                suspendThresholdMgdL: therapy.suspendThreshold?.quantity.doubleValue(for: mgdL).rounded(to: 0),
++                maximumBasalRateUnitsPerHour: therapy.maximumBasalRatePerHour,
++                maximumBolusUnits: therapy.maximumBolus,
++                insulinModel: therapy.defaultRapidActingModel?.rawValue,
++                dosingStrategy: input.automaticDosingStrategy.map { $0 == .automaticBolus ? "automaticBolus" : "tempBasalOnly" },
++                algorithmExperiments: input.algorithmExperiments
++            )
++        }
++    }
++}
++
++// MARK: - Helpers
++
++private extension Double {
++    func rounded(to places: Int) -> Double {
++        let multiplier = pow(10, Double(places))
++        return (self * multiplier).rounded() / multiplier
++    }
++}
++
++private extension Array where Element == Double {
++    var mean: Double? {
++        isEmpty ? nil : reduce(0, +) / Double(count)
++    }
++
++    /// Linearly interpolated percentile of a sorted array
++    func percentile(_ fraction: Double) -> Double? {
++        guard !isEmpty else {
++            return nil
++        }
++        let position = fraction * Double(count - 1)
++        let lower = Int(position.rounded(.down))
++        let upper = Swift.min(lower + 1, count - 1)
++        return self[lower] + (self[upper] - self[lower]) * (position - Double(lower))
++    }
++}
++
++private extension Array {
++    func percent(where predicate: (Element) -> Bool) -> Double {
++        guard !isEmpty else {
++            return 0
++        }
++        return (Double(filter(predicate).count) / Double(count) * 100).rounded(to: 1)
++    }
++}
+diff --git a/Loop/Loop/View Controllers/StatusTableViewController.swift b/Loop/Loop/View Controllers/StatusTableViewController.swift
+index 3e124fa..8dc2075 100644
+--- a/Loop/Loop/View Controllers/StatusTableViewController.swift	
++++ b/Loop/Loop/View Controllers/StatusTableViewController.swift	
+@@ -1636,7 +1636,8 @@ final class StatusTableViewController: LoopChartsTableViewController {
+                                           availableSupports: supportManager.availableSupports,
+                                           isOnboardingComplete: onboardingManager.isComplete,
+                                           therapySettingsViewModelDelegate: deviceManager,
+-                                          delegate: self)
++                                          delegate: self,
++                                          therapyInsightsDataSource: deviceManager)
+         let hostingController = DismissibleHostingController(
+             rootView: SettingsView(viewModel: viewModel, localizedAppNameAndVersion: supportManager.localizedAppNameAndVersion)
+                 .environmentObject(deviceManager.displayGlucosePreference)
+diff --git a/Loop/Loop/View Models/SettingsViewModel.swift b/Loop/Loop/View Models/SettingsViewModel.swift
+index d4b4876..9a633d0 100644
+--- a/Loop/Loop/View Models/SettingsViewModel.swift	
++++ b/Loop/Loop/View Models/SettingsViewModel.swift	
+@@ -79,6 +79,7 @@ public class SettingsViewModel: ObservableObject {
+     let sensitivityOverridesEnabled: Bool
+     let isOnboardingComplete: Bool
+     let therapySettingsViewModelDelegate: TherapySettingsViewModelDelegate?
++    let therapyInsightsDataSource: TherapyInsightsDataSource?
+ 
+     @Published var isClosedLoopAllowed: Bool
+ 
+@@ -120,7 +121,8 @@ public class SettingsViewModel: ObservableObject {
+                 availableSupports: [SupportUI],
+                 isOnboardingComplete: Bool,
+                 therapySettingsViewModelDelegate: TherapySettingsViewModelDelegate?,
+-                delegate: SettingsViewModelDelegate?
++                delegate: SettingsViewModelDelegate?,
++                therapyInsightsDataSource: TherapyInsightsDataSource? = nil
+     ) {
+         self.alertPermissionsChecker = alertPermissionsChecker
+         self.alertMuter = alertMuter
+@@ -138,6 +140,7 @@ public class SettingsViewModel: ObservableObject {
+         self.isOnboardingComplete = isOnboardingComplete
+         self.therapySettingsViewModelDelegate = therapySettingsViewModelDelegate
+         self.delegate = delegate
++        self.therapyInsightsDataSource = therapyInsightsDataSource
+ 
+         // This strangeness ensures the composed ViewModels' (ObservableObjects') changes get reported to this ViewModel (ObservableObject)
+         alertPermissionsChecker.objectWillChange.sink { [weak self] in
+diff --git a/Loop/Loop/View Models/TherapyInsightsViewModel.swift b/Loop/Loop/View Models/TherapyInsightsViewModel.swift
+new file mode 100644
+index 0000000..496e8d2
+--- /dev/null
++++ b/Loop/Loop/View Models/TherapyInsightsViewModel.swift	
+@@ -0,0 +1,183 @@
++//
++//  TherapyInsightsViewModel.swift
++//  Loop
++//
++//  Copyright © 2026 LoopKit Authors. All rights reserved.
++//
++
++import Foundation
++import LoopKit
++import os.log
++
++@MainActor
++final class TherapyInsightsViewModel: ObservableObject {
++    enum State: Equatable {
++        case idle
++        case collectingData
++        case waitingForAI
++        case failed(String)
++
++        var isBusy: Bool {
++            self == .collectingData || self == .waitingForAI
++        }
++    }
++
++    private enum Key {
++        static let provider = "com.loopkit.Loop.TherapyInsights.provider"
++        static let days = "com.loopkit.Loop.TherapyInsights.days"
++        static let consent = "com.loopkit.Loop.TherapyInsights.dataSharingConsent"
++        static let lastResult = "com.loopkit.Loop.TherapyInsights.lastResult"
++        static let lastResultDate = "com.loopkit.Loop.TherapyInsights.lastResultDate"
++        static let lastResultProvider = "com.loopkit.Loop.TherapyInsights.lastResultProvider"
++
++        static func model(_ provider: TherapyInsightsProvider) -> String {
++            "com.loopkit.Loop.TherapyInsights.model.\(provider.rawValue)"
++        }
++
++        static func apiKeyService(_ provider: TherapyInsightsProvider) -> String {
++            "com.loopkit.Loop.TherapyInsights.apiKey.\(provider.rawValue)"
++        }
++    }
++
++    static let dayOptions = [7, 14, 30]
++
++    @Published var provider: TherapyInsightsProvider {
++        didSet {
++            guard provider != oldValue else { return }
++            defaults.set(provider.rawValue, forKey: Key.provider)
++            model = defaults.string(forKey: Key.model(provider)) ?? provider.defaultModel
++            apiKey = (try? keychain.getGenericPasswordForService(Key.apiKeyService(provider))) ?? ""
++            isAPIKeySaved = !apiKey.isEmpty
++        }
++    }
++    @Published var model: String {
++        didSet { defaults.set(model, forKey: Key.model(provider)) }
++    }
++    @Published var apiKey: String {
++        didSet { isAPIKeySaved = false }
++    }
++    @Published private(set) var isAPIKeySaved: Bool
++    @Published var days: Int {
++        didSet { defaults.set(days, forKey: Key.days) }
++    }
++    @Published var hasConsentedToDataSharing: Bool {
++        didSet { defaults.set(hasConsentedToDataSharing, forKey: Key.consent) }
++    }
++    @Published private(set) var state: State = .idle
++    @Published private(set) var result: String?
++    @Published private(set) var resultDate: Date?
++    @Published private(set) var resultProvider: String?
++    @Published private(set) var dataPreview: String?
++
++    var canAnalyze: Bool {
++        !state.isBusy && hasConsentedToDataSharing && !apiKey.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty && !model.isEmpty
++    }
++
++    private let dataSource: TherapyInsightsDataSource
++    private let client: TherapyInsightsAIClient
++    private let keychain: KeychainManager
++    private let defaults: UserDefaults
++    private let log = OSLog(category: "TherapyInsightsViewModel")
++    private var analysisTask: Task<Void, Never>?
++
++    init(dataSource: TherapyInsightsDataSource, client: TherapyInsightsAIClient = TherapyInsightsAIClient(), keychain: KeychainManager = KeychainManager(), defaults: UserDefaults = .standard) {
++        self.dataSource = dataSource
++        self.client = client
++        self.keychain = keychain
++        self.defaults = defaults
++
++        let provider = defaults.string(forKey: Key.provider).flatMap(TherapyInsightsProvider.init(rawValue:)) ?? .claude
++        let apiKey = (try? keychain.getGenericPasswordForService(Key.apiKeyService(provider))) ?? ""
++        self.provider = provider
++        self.model = defaults.string(forKey: Key.model(provider)) ?? provider.defaultModel
++        self.apiKey = apiKey
++        self.isAPIKeySaved = !apiKey.isEmpty
++        let storedDays = defaults.integer(forKey: Key.days)
++        self.days = Self.dayOptions.contains(storedDays) ? storedDays : 14
++        self.hasConsentedToDataSharing = defaults.bool(forKey: Key.consent)
++        self.result = defaults.string(forKey: Key.lastResult)
++        self.resultDate = defaults.object(forKey: Key.lastResultDate) as? Date
++        self.resultProvider = defaults.string(forKey: Key.lastResultProvider)
++    }
++
++    func saveAPIKey() {
++        let trimmed = apiKey.trimmingCharacters(in: .whitespacesAndNewlines)
++        do {
++            try keychain.replaceGenericPassword(trimmed.isEmpty ? nil : trimmed, forService: Key.apiKeyService(provider))
++            apiKey = trimmed
++            isAPIKeySaved = !trimmed.isEmpty
++        } catch {
++            log.error("Failed to save API key: %{public}@", String(describing: error))
++            state = .failed(error.localizedDescription)
++        }
++    }
++
++    func resetModel() {
++        model = provider.defaultModel
++    }
++
++    func loadDataPreview() async {
++        do {
++            dataPreview = try await reportJSON()
++        } catch {
++            dataPreview = error.localizedDescription
++        }
++    }
++
++    func analyze() {
++        guard canAnalyze else { return }
++        if !isAPIKeySaved {
++            saveAPIKey()
++        }
++
++        analysisTask = Task {
++            do {
++                state = .collectingData
++                let json = try await reportJSON()
++
++                state = .waitingForAI
++                let prompt = TherapyInsightsPrompt.user(reportJSON: json, displayGlucoseUnit: displayUnitName, language: Self.preferredLanguage)
++                let text = try await client.recommendations(provider: provider, model: model, apiKey: apiKey, system: TherapyInsightsPrompt.system, prompt: prompt)
++                try Task.checkCancellation()
++
++                storeResult(text)
++                state = .idle
++            } catch is CancellationError {
++                state = .idle
++            } catch let error as URLError where error.code == .cancelled {
++                state = .idle
++            } catch {
++                log.error("Therapy insights analysis failed: %{public}@", String(describing: error))
++                state = .failed(error.localizedDescription)
++            }
++        }
++    }
++
++    func cancel() {
++        analysisTask?.cancel()
++        analysisTask = nil
++    }
++
++    private var displayUnitName = "mg/dL"
++
++    private func reportJSON() async throws -> String {
++        let input = try await dataSource.therapyInsightsInput(days: days)
++        displayUnitName = input.displayGlucoseUnitName
++        return try TherapyInsightsReport(input: input).jsonString()
++    }
++
++    private func storeResult(_ text: String) {
++        let date = Date()
++        result = text
++        resultDate = date
++        resultProvider = "\(provider.displayName) · \(model)"
++        defaults.set(text, forKey: Key.lastResult)
++        defaults.set(date, forKey: Key.lastResultDate)
++        defaults.set(resultProvider, forKey: Key.lastResultProvider)
++    }
++
++    private static var preferredLanguage: String {
++        let identifier = Locale.preferredLanguages.first ?? "en"
++        return Locale(identifier: "en").localizedString(forIdentifier: identifier) ?? identifier
++    }
++}
+diff --git a/Loop/Loop/Views/DampedMomentumSelectionView.swift b/Loop/Loop/Views/DampedMomentumSelectionView.swift
+new file mode 100644
+index 0000000..c3143f2
+--- /dev/null
++++ b/Loop/Loop/Views/DampedMomentumSelectionView.swift
+@@ -0,0 +1,40 @@
++//
++//  DampedMomentumSelectionView.swift
++//  Loop
++//
++//  Copyright © 2026 LoopKit Authors. All rights reserved.
++//
++
++import SwiftUI
++import LoopKit
++
++public struct DampedMomentumSelectionView: View {
++    @Binding var isDampedMomentumEnabled: Bool
++
++    public var body: some View {
++        ScrollView {
++            VStack(spacing: 10) {
++                Text(NSLocalizedString("Damped Momentum", comment: "Title for damped momentum experiment description"))
++                    .font(.headline)
++                    .padding(.bottom, 20)
++
++                Divider()
++
++                Text(NSLocalizedString("Momentum is the part of the forecast based on the most recent glucose trend. Standard Loop projects the last 15 minutes of trend linearly for 15 minutes.\n\nWith Damped Momentum, a steady trend is projected for 30 minutes with gradually decreasing speed, so Loop reacts a little earlier to sustained rises and falls. Noisy or turning trends (sensor noise, recovery from a compression low, the peak of a meal) use the standard projection.\n\nThe effect is modest: for a steady unexplained trend the forecast moves about a third further than standard. Changes take effect with the next glucose reading.", comment: "Description of Damped Momentum toggle."))
++                    .foregroundColor(.secondary)
++                Divider()
++
++                Toggle(NSLocalizedString("Enable Damped Momentum", comment: "Title for Damped Momentum toggle"), isOn: $isDampedMomentumEnabled)
++                    .padding(.top, 20)
++            }
++            .padding()
++        }
++        .navigationBarTitleDisplayMode(.inline)
++    }
++}
++
++struct DampedMomentumSelectionView_Previews: PreviewProvider {
++    static var previews: some View {
++        DampedMomentumSelectionView(isDampedMomentumEnabled: .constant(true))
++    }
++}
+diff --git a/Loop/Loop/Views/SettingsView+algorithmExperimentsSection.swift b/Loop/Loop/Views/SettingsView+algorithmExperimentsSection.swift
+index 795fbdd..859ee0b 100644
+--- a/Loop/Loop/Views/SettingsView+algorithmExperimentsSection.swift
++++ b/Loop/Loop/Views/SettingsView+algorithmExperimentsSection.swift
+@@ -41,6 +41,7 @@ public struct ExperimentRow: View {
+ public struct ExperimentsSettingsView: View {
+     @AppStorage(UserDefaults.Key.GlucoseBasedApplicationFactorEnabled.rawValue) private var isGlucoseBasedApplicationFactorEnabled = false
+     @AppStorage(UserDefaults.Key.IntegralRetrospectiveCorrectionEnabled.rawValue) private var isIntegralRetrospectiveCorrectionEnabled = false
++    @AppStorage(GlucoseMath.dampedMomentumEnabledKey) private var isDampedMomentumEnabled = false
+     var automaticDosingStrategy: AutomaticDosingStrategy
+ 
+     public var body: some View {
+@@ -70,6 +71,11 @@ public struct ExperimentsSettingsView: View {
+                         name: NSLocalizedString("Integral Retrospective Correction", comment: "Title of integral retrospective correction experiment"),
+                         enabled: isIntegralRetrospectiveCorrectionEnabled)
+                 }
++                NavigationLink(destination: DampedMomentumSelectionView(isDampedMomentumEnabled: $isDampedMomentumEnabled)) {
++                    ExperimentRow(
++                        name: NSLocalizedString("Damped Momentum", comment: "Title of damped momentum experiment"),
++                        enabled: isDampedMomentumEnabled)
++                }
+                 Spacer()
+             }
+             .padding()
+diff --git a/Loop/Loop/Views/SettingsView.swift b/Loop/Loop/Views/SettingsView.swift
+index 4d65f5b..ca195ba 100644
+--- a/Loop/Loop/Views/SettingsView.swift
++++ b/Loop/Loop/Views/SettingsView.swift
+@@ -279,6 +279,20 @@ extension SettingsView {
+                             descriptiveText: NSLocalizedString("Diabetes Treatment", comment: "Descriptive text for Therapy Settings"))
+             }
+ 
++            if let therapyInsightsDataSource = viewModel.therapyInsightsDataSource {
++                NavigationLink(destination: TherapyInsightsView(dataSource: therapyInsightsDataSource)) {
++                    LargeButton(action: { },
++                                includeArrow: false,
++                                imageView: Image(systemName: "sparkles")
++                                    .resizable()
++                                    .aspectRatio(contentMode: .fit)
++                                    .foregroundColor(.accentColor)
++                                    .padding(12),
++                                label: NSLocalizedString("AI Therapy Insights", comment: "Title text for button to AI therapy insights"),
++                                descriptiveText: NSLocalizedString("Settings suggestions from your data", comment: "Descriptive text for AI therapy insights"))
++                }
++            }
++
+             ForEach(pluginMenuItems.filter {$0.section == .configuration}) { item in
+                 item.view
+             }
+diff --git a/Loop/Loop/Views/TherapyInsightsView.swift b/Loop/Loop/Views/TherapyInsightsView.swift
+new file mode 100644
+index 0000000..bb7afc6
+--- /dev/null
++++ b/Loop/Loop/Views/TherapyInsightsView.swift
+@@ -0,0 +1,241 @@
++//
++//  TherapyInsightsView.swift
++//  Loop
++//
++//  Copyright © 2026 LoopKit Authors. All rights reserved.
++//
++
++import SwiftUI
++import LoopKitUI
++
++struct TherapyInsightsView: View {
++    @StateObject private var viewModel: TherapyInsightsViewModel
++    @FocusState private var isAPIKeyFocused: Bool
++
++    init(dataSource: TherapyInsightsDataSource) {
++        _viewModel = StateObject(wrappedValue: TherapyInsightsViewModel(dataSource: dataSource))
++    }
++
++    var body: some View {
++        Form {
++            disclaimerSection
++            providerSection
++            analysisSection
++            if let result = viewModel.result {
++                resultSection(result)
++            }
++        }
++        .navigationTitle(NSLocalizedString("AI Therapy Insights", comment: "Title of the AI therapy insights screen"))
++        .navigationBarTitleDisplayMode(.inline)
++        .onDisappear { viewModel.cancel() }
++    }
++
++    private var disclaimerSection: some View {
++        Section {
++            Label {
++                Text(NSLocalizedString("An AI model reviews your glucose, insulin and carb history together with your therapy settings and suggests adjustments. Suggestions can be wrong. Nothing is changed automatically — review any change with your diabetes care team before applying it in Therapy Settings.", comment: "AI therapy insights disclaimer"))
++                    .font(.footnote)
++            } icon: {
++                Image(systemName: "exclamationmark.triangle.fill")
++                    .foregroundColor(.orange)
++            }
++        }
++    }
++
++    private var providerSection: some View {
++        Section(
++            header: Text(NSLocalizedString("AI Provider", comment: "Section header for AI provider settings")),
++            footer: Text(viewModel.provider.apiKeyInstructions)
++        ) {
++            Picker(NSLocalizedString("Provider", comment: "Label for AI provider picker"), selection: $viewModel.provider) {
++                ForEach(TherapyInsightsProvider.allCases) { provider in
++                    Text(provider.displayName).tag(provider)
++                }
++            }
++
++            HStack {
++                Text(NSLocalizedString("Model", comment: "Label for AI model field"))
++                TextField(viewModel.provider.defaultModel, text: $viewModel.model)
++                    .multilineTextAlignment(.trailing)
++                    .disableAutocorrection(true)
++                    .textInputAutocapitalization(.never)
++                    .foregroundColor(.secondary)
++                if viewModel.model != viewModel.provider.defaultModel {
++                    Button(action: viewModel.resetModel) {
++                        Image(systemName: "arrow.uturn.backward.circle")
++                    }
++                    .buttonStyle(.borderless)
++                }
++            }
++
++            HStack {
++                SecureField(viewModel.provider.apiKeyPlaceholder, text: $viewModel.apiKey)
++                    .disableAutocorrection(true)
++                    .textInputAutocapitalization(.never)
++                    .focused($isAPIKeyFocused)
++                    .onSubmit(viewModel.saveAPIKey)
++                if viewModel.isAPIKeySaved {
++                    Image(systemName: "checkmark.seal.fill")
++                        .foregroundColor(.green)
++                        .accessibilityLabel(NSLocalizedString("API key saved", comment: "Accessibility label for saved API key"))
++                } else {
++                    Button(NSLocalizedString("Save", comment: "Button to save API key")) {
++                        isAPIKeyFocused = false
++                        viewModel.saveAPIKey()
++                    }
++                    .buttonStyle(.borderless)
++                }
++            }
++        }
++    }
++
++    private var analysisSection: some View {
++        Section(
++            header: Text(NSLocalizedString("Analysis", comment: "Section header for AI analysis")),
++            footer: Text(String(format: NSLocalizedString("Sends a summary of the selected period (statistics by hour of day, meals, corrections, overnight trends and your therapy settings — no names or device identifiers) to %1$@ using your API key. The provider bills your account for each analysis.", comment: "Footer describing what data is shared (1: provider name)"), viewModel.provider.displayName))
++        ) {
++            Picker(NSLocalizedString("Period", comment: "Label for analysis period picker"), selection: $viewModel.days) {
++                ForEach(TherapyInsightsViewModel.dayOptions, id: \.self) { days in
++                    Text(String(format: NSLocalizedString("%d days", comment: "Analysis period option (1: number of days)"), days)).tag(days)
++                }
++            }
++
++            Toggle(NSLocalizedString("Allow sending my data to the AI provider", comment: "Consent toggle for sharing data with AI provider"), isOn: $viewModel.hasConsentedToDataSharing)
++
++            NavigationLink(NSLocalizedString("Preview data to be sent", comment: "Link to preview data sent to the AI provider")) {
++                TherapyInsightsDataPreview(viewModel: viewModel)
++            }
++
++            switch viewModel.state {
++            case .collectingData, .waitingForAI:
++                HStack {
++                    ProgressView()
++                    Text(viewModel.state == .collectingData
++                         ? NSLocalizedString("Summarizing your data…", comment: "Progress text while collecting data")
++                         : NSLocalizedString("Waiting for the AI analysis (this can take a few minutes)…", comment: "Progress text while waiting for AI"))
++                        .font(.footnote)
++                        .foregroundColor(.secondary)
++                    Spacer()
++                    Button(NSLocalizedString("Cancel", comment: "Button to cancel AI analysis"), action: viewModel.cancel)
++                        .buttonStyle(.borderless)
++                }
++            default:
++                Button(action: viewModel.analyze) {
++                    Label(NSLocalizedString("Analyze & Recommend", comment: "Button to start AI analysis"), systemImage: "sparkles")
++                }
++                .disabled(!viewModel.canAnalyze)
++            }
++
++            if case .failed(let message) = viewModel.state {
++                Text(message)
++                    .font(.footnote)
++                    .foregroundColor(.red)
++            }
++        }
++    }
++
++    private func resultSection(_ result: String) -> some View {
++        Section(
++            header: HStack {
++                Text(NSLocalizedString("Recommendations", comment: "Section header for AI recommendations"))
++                Spacer()
++                Button {
++                    UIPasteboard.general.string = result
++                } label: {
++                    Image(systemName: "doc.on.doc")
++                        .accessibilityLabel(NSLocalizedString("Copy recommendations", comment: "Accessibility label for button copying AI recommendations"))
++                }
++            },
++            footer: resultFooter
++        ) {
++            MarkdownText(markdown: result)
++                .textSelection(.enabled)
++                .padding(.vertical, 4)
++        }
++    }
++
++    @ViewBuilder
++    private var resultFooter: some View {
++        if let date = viewModel.resultDate {
++            Text([date.formatted(date: .abbreviated, time: .shortened), viewModel.resultProvider].compactMap { $0 }.joined(separator: " · "))
++        }
++    }
++}
++
++private struct TherapyInsightsDataPreview: View {
++    @ObservedObject var viewModel: TherapyInsightsViewModel
++
++    var body: some View {
++        ScrollView {
++            if let preview = viewModel.dataPreview {
++                Text(preview)
++                    .font(.system(.caption, design: .monospaced))
++                    .textSelection(.enabled)
++                    .frame(maxWidth: .infinity, alignment: .leading)
++                    .padding()
++            } else {
++                ProgressView().padding()
++            }
++        }
++        .navigationTitle(NSLocalizedString("Data to be sent", comment: "Title of AI data preview screen"))
++        .navigationBarTitleDisplayMode(.inline)
++        .task { await viewModel.loadDataPreview() }
++    }
++}
++
++/// Renders the block-level Markdown typically returned by language models (headings, bullet lists, paragraphs)
++private struct MarkdownText: View {
++    let markdown: String
++
++    var body: some View {
++        VStack(alignment: .leading, spacing: 6) {
++            ForEach(Array(markdown.components(separatedBy: .newlines).enumerated()), id: \.offset) { _, line in
++                row(for: line)
++            }
++        }
++    }
++
++    @ViewBuilder
++    private func row(for line: String) -> some View {
++        let trimmed = line.trimmingCharacters(in: .whitespaces)
++        if trimmed.isEmpty {
++            EmptyView()
++        } else if let heading = trimmed.dropPrefix(while: "#") {
++            inline(heading)
++                .font(.headline)
++                .padding(.top, 6)
++        } else if let item = trimmed.dropPrefix("- ") ?? trimmed.dropPrefix("* ") {
++            HStack(alignment: .firstTextBaseline, spacing: 6) {
++                Text("•")
++                inline(item)
++            }
++            .padding(.leading, line.prefix(while: { $0 == " " }).count >= 2 ? 16 : 0)
++        } else if trimmed.allSatisfy({ $0 == "-" || $0 == "*" || $0 == "_" }) {
++            Divider()
++        } else {
++            inline(trimmed)
++        }
++    }
++
++    private func inline(_ text: String) -> Text {
++        if let attributed = try? AttributedString(markdown: text, options: .init(interpretedSyntax: .inlineOnlyPreservingWhitespace)) {
++            return Text(attributed)
++        }
++        return Text(text)
++    }
++}
++
++private extension String {
++    func dropPrefix(_ prefix: String) -> String? {
++        hasPrefix(prefix) ? String(dropFirst(prefix.count)) : nil
++    }
++
++    /// Strips a run of `character` followed by a space (e.g. Markdown heading markers)
++    func dropPrefix(while character: Character) -> String? {
++        let markers = prefix(while: { $0 == character })
++        guard !markers.isEmpty, dropFirst(markers.count).first == " " else {
++            return nil
++        }
++        return String(dropFirst(markers.count + 1))
++    }
++}
+diff --git a/Loop/LoopTests/Managers/TherapyInsightsReportTests.swift b/Loop/LoopTests/Managers/TherapyInsightsReportTests.swift
+new file mode 100644
+index 0000000..c819174
+--- /dev/null
++++ b/Loop/LoopTests/Managers/TherapyInsightsReportTests.swift
+@@ -0,0 +1,233 @@
++//
++//  TherapyInsightsReportTests.swift
++//  LoopTests
++//
++//  Copyright © 2026 LoopKit Authors. All rights reserved.
++//
++
++import XCTest
++import HealthKit
++import LoopKit
++@testable import Loop
++
++class TherapyInsightsReportTests: XCTestCase {
++    private let utc = TimeZone(identifier: "UTC")!
++    private let start = ISO8601DateFormatter().date(from: "2026-01-01T00:00:00Z")!
++
++    private var calendar: Calendar {
++        var calendar = Calendar(identifier: .gregorian)
++        calendar.timeZone = utc
++        return calendar
++    }
++
++    private func date(hours: Double) -> Date {
++        start.addingTimeInterval(.hours(hours))
++    }
++
++    /// Glucose every 5 minutes for `hours`, using `value` to compute each reading from hours since start
++    private func glucose(hours: Double, value: (Double) -> Double) -> [TherapyInsightsInput.GlucoseReading] {
++        stride(from: 0.0, to: hours, by: 5.0 / 60).map { .init(date: date(hours: $0), mgdL: value($0)) }
++    }
++
++    private func input(days: Double = 1,
++                       glucose: [TherapyInsightsInput.GlucoseReading],
++                       doses: [DoseEntry] = [],
++                       carbs: [TherapyInsightsInput.CarbEntry] = []) -> TherapyInsightsInput {
++        var settings = TherapySettings()
++        settings.basalRateSchedule = BasalRateSchedule(dailyItems: [RepeatingScheduleValue(startTime: 0, value: 1.0)], timeZone: utc)
++        settings.insulinSensitivitySchedule = InsulinSensitivitySchedule(unit: .milligramsPerDeciliter, dailyItems: [RepeatingScheduleValue(startTime: 0, value: 40)], timeZone: utc)
++        settings.carbRatioSchedule = CarbRatioSchedule(unit: .gram(), dailyItems: [RepeatingScheduleValue(startTime: 0, value: 10)], timeZone: utc)
++        settings.suspendThreshold = GlucoseThreshold(unit: .millimolesPerLiter, value: 4.0)
++
++        return TherapyInsightsInput(
++            start: start,
++            end: start.addingTimeInterval(.days(days)),
++            glucose: glucose,
++            doses: doses,
++            carbs: carbs,
++            therapySettings: settings,
++            automaticDosingStrategy: .automaticBolus,
++            displayGlucoseUnit: .millimolesPerLiter,
++            algorithmExperiments: ["dampedMomentum": true],
++            calendar: calendar
++        )
++    }
++
++    func testGlucoseSummary() {
++        // 3 hours below 70, 21 hours at 120
++        let report = TherapyInsightsReport(input: input(glucose: glucose(hours: 24) { $0 < 3 ? 60 : 120 }))
++
++        let summary = try! XCTUnwrap(report.glucose)
++        XCTAssertEqual(summary.readings, 288)
++        XCTAssertEqual(summary.percentBelow70, 12.5)
++        XCTAssertEqual(summary.percentInRange70To180, 87.5)
++        XCTAssertEqual(summary.percentBelow54, 0)
++        XCTAssertEqual(summary.hypoglycemiaEvents, 1)
++        XCTAssertEqual(summary.meanMgdL, 113)
++        XCTAssertEqual(report.period.cgmCoveragePercent, 100)
++    }
++
++    func testShortLowIsNotAHypoglycemiaEvent() {
++        // Three readings (10 minutes) below 70
++        let report = TherapyInsightsReport(input: input(glucose: glucose(hours: 24) { $0 >= 1 && $0 < 1.2 ? 65 : 110 }))
++        XCTAssertEqual(report.glucose?.hypoglycemiaEvents, 0)
++    }
++
++    func testDeliveredBasalUsesTempBasalsAndSuspends() {
++        let doses = [
++            DoseEntry(type: .tempBasal, startDate: date(hours: 2), endDate: date(hours: 3), value: 2.0, unit: .unitsPerHour),
++            DoseEntry(type: .suspend, startDate: date(hours: 5), endDate: date(hours: 6), value: 0, unit: .units),
++            DoseEntry(type: .bolus, startDate: date(hours: 8), endDate: date(hours: 8), value: 0.3, unit: .units, deliveredUnits: 0.3, automatic: true),
++            DoseEntry(type: .bolus, startDate: date(hours: 12), endDate: date(hours: 12), value: 4, unit: .units, deliveredUnits: 4, automatic: false)
++        ]
++        let report = TherapyInsightsReport(input: input(glucose: glucose(hours: 24) { _ in 110 }, doses: doses))
++
++        XCTAssertEqual(report.hourly[1].deliveredBasalUnitsPerHour, 1.0)
++        XCTAssertEqual(report.hourly[2].deliveredBasalUnitsPerHour, 2.0)
++        XCTAssertEqual(report.hourly[2].scheduledBasalUnitsPerHour, 1.0)
++        XCTAssertEqual(report.hourly[5].deliveredBasalUnitsPerHour, 0)
++        XCTAssertEqual(report.hourly[8].automaticBolusUnitsPerHour, 0.3)
++
++        XCTAssertEqual(report.insulin.averageDailyScheduledBasal, 24)
++        XCTAssertEqual(report.insulin.averageDailyDeliveredBasal, 24)  // +1 U temp basal, -1 U suspend
++        XCTAssertEqual(report.insulin.averageDailyAutomaticBolus, 0.3)
++        XCTAssertEqual(report.insulin.averageDailyManualBolus, 4)
++        XCTAssertEqual(report.insulin.averageTotalDailyDose, 28.3)
++    }
++
++    func testCorrectionSensitivity() {
++        // 2 U correction at 200 mg/dL, 100 mg/dL four hours later: 50 mg/dL/U observed vs 40 scheduled
++        let bolus = DoseEntry(type: .bolus, startDate: date(hours: 10), endDate: date(hours: 10), value: 2, unit: .units, deliveredUnits: 2, automatic: false)
++        let readings = glucose(hours: 24) { hours in
++            switch hours {
++            case ..<10: return 200
++            case ..<14: return 200 - (hours - 10) * 25
++            default: return 100
++            }
++        }
++        let report = TherapyInsightsReport(input: input(glucose: readings, doses: [bolus]))
++
++        XCTAssertEqual(report.corrections.episodes, 1)
++        XCTAssertEqual(report.corrections.medianObservedSensitivityMgdLPerUnit, 50)
++        XCTAssertEqual(report.corrections.medianScheduledSensitivityMgdLPerUnit, 40)
++    }
++
++    func testCorrectionWithCarbsIsExcluded() {
++        let bolus = DoseEntry(type: .bolus, startDate: date(hours: 10), endDate: date(hours: 10), value: 2, unit: .units, deliveredUnits: 2, automatic: false)
++        let report = TherapyInsightsReport(input: input(glucose: glucose(hours: 24) { _ in 200 }, doses: [bolus], carbs: [.init(date: date(hours: 11), grams: 20)]))
++        XCTAssertEqual(report.corrections.episodes, 0)
++    }
++
++    func testMealExcursions() {
++        let readings = glucose(hours: 24) { hours in
++            switch hours {
++            case 8..<9: return 100 + (hours - 8) * 80   // peaks at 180
++            case 9..<11: return 180 - (hours - 9) * 20  // 140 at 11:00
++            case 11...: return 140
++            default: return 100
++            }
++        }
++        let carbs: [TherapyInsightsInput.CarbEntry] = [.init(date: date(hours: 8), grams: 40), .init(date: date(hours: 8.25), grams: 10)]
++        let report = TherapyInsightsReport(input: input(glucose: readings, carbs: carbs))
++
++        XCTAssertEqual(report.meals.count, 1)
++        let breakfast = report.meals[0]
++        XCTAssertEqual(breakfast.name, "breakfast (04-10)")
++        XCTAssertEqual(breakfast.meals, 1)
++        XCTAssertEqual(breakfast.medianCarbsGrams, 50)
++        XCTAssertEqual(breakfast.medianScheduledCarbRatio, 10)
++        XCTAssertEqual(breakfast.medianStartMgdL, 100)
++        XCTAssertEqual(breakfast.medianChangeAfter3hMgdL, 40)
++        XCTAssertEqual(breakfast.percentFollowedByLowWithin4h, 0)
++        XCTAssertEqual(try XCTUnwrap(breakfast.medianPeakRiseMgdL), 80, accuracy: 2)
++    }
++
++    func testOvernightDrift() {
++        // Two days; the second night (day 2, 00:00-06:00) rises 30 mg/dL with no carbs
++        let readings = glucose(hours: 48) { hours in
++            hours < 24 ? 100 : 100 + min(hours - 24, 6) * 5
++        }
++        let report = TherapyInsightsReport(input: input(days: 2, glucose: readings))
++
++        // The first night has no evening data before it, so only the second night qualifies
++        XCTAssertEqual(report.overnight.nights, 1)
++        XCTAssertEqual(report.overnight.medianDriftMgdL, 30)
++        XCTAssertEqual(report.overnight.medianDeliveredToScheduledBasalPercent, 100)
++    }
++
++    func testSettingsAreExportedInMgdL() throws {
++        let report = TherapyInsightsReport(input: input(glucose: []))
++
++        XCTAssertNil(report.glucose)
++        XCTAssertEqual(report.settings.displayGlucoseUnit, "mmol/L")
++        XCTAssertEqual(report.settings.basalRateUnitsPerHour, [.init(start: "00:00", value: 1.0)])
++        XCTAssertEqual(report.settings.insulinSensitivityMgdLPerUnit, [.init(start: "00:00", value: 40)])
++        XCTAssertEqual(report.settings.carbRatioGramsPerUnit, [.init(start: "00:00", value: 10)])
++        XCTAssertEqual(report.settings.suspendThresholdMgdL, 72)
++        XCTAssertEqual(report.settings.dosingStrategy, "automaticBolus")
++        XCTAssertTrue(try report.jsonString().contains("\"dampedMomentum\" : true"))
++    }
++}
++
++class TherapyInsightsAIClientTests: XCTestCase {
++    private func body(_ request: URLRequest) throws -> [String: Any] {
++        try XCTUnwrap(JSONSerialization.jsonObject(with: XCTUnwrap(request.httpBody)) as? [String: Any])
++    }
++
++    func testClaudeRequest() throws {
++        let request = try TherapyInsightsAIClient.makeRequest(provider: .claude, model: "claude-opus-5-5", apiKey: " sk-ant-test \n", system: "system", prompt: "prompt")
++
++        XCTAssertEqual(request.url?.absoluteString, "https://api.anthropic.com/v1/messages")
++        XCTAssertEqual(request.value(forHTTPHeaderField: "x-api-key"), "sk-ant-test")
++        XCTAssertEqual(request.value(forHTTPHeaderField: "anthropic-version"), "2023-06-01")
++        XCTAssertEqual(request.value(forHTTPHeaderField: "anthropic-beta"), "server-side-fallback-2026-07-01")
++        let body = try body(request)
++        XCTAssertEqual(body["model"] as? String, "claude-opus-5-5")
++        XCTAssertEqual(body["system"] as? String, "system")
++        XCTAssertEqual(body["fallbacks"] as? String, "default")
++        XCTAssertEqual((body["output_config"] as? [String: String])?["effort"], "high")
++    }
++
++    func testOlderClaudeModelOmitsEffortAndFallbacks() throws {
++        let request = try TherapyInsightsAIClient.makeRequest(provider: .claude, model: "claude-haiku-4-5", apiKey: "key", system: "s", prompt: "p")
++        let body = try body(request)
++        XCTAssertNil(body["output_config"])
++        XCTAssertNil(body["fallbacks"])
++        XCTAssertNil(request.value(forHTTPHeaderField: "anthropic-beta"))
++    }
++
++    func testChatCompletionsRequests() throws {
++        let deepSeek = try TherapyInsightsAIClient.makeRequest(provider: .deepSeek, model: "deepseek-chat", apiKey: "sk-1", system: "s", prompt: "p")
++        XCTAssertEqual(deepSeek.value(forHTTPHeaderField: "Authorization"), "Bearer sk-1")
++        let messages = try XCTUnwrap(body(deepSeek)["messages"] as? [[String: String]])
++        XCTAssertEqual(messages.map { $0["role"] }, ["system", "user"])
++
++        let gitHub = try TherapyInsightsAIClient.makeRequest(provider: .gitHubModels, model: "openai/gpt-4.1", apiKey: "github_pat_1", system: "s", prompt: "p")
++        XCTAssertEqual(gitHub.url?.host, "models.github.ai")
++        XCTAssertEqual(gitHub.value(forHTTPHeaderField: "Authorization"), "Bearer github_pat_1")
++    }
++
++    func testMissingAPIKey() {
++        XCTAssertThrowsError(try TherapyInsightsAIClient.makeRequest(provider: .claude, model: "m", apiKey: "  ", system: "s", prompt: "p")) { error in
++            XCTAssertEqual(error as? TherapyInsightsAIError, .missingAPIKey)
++        }
++    }
++
++    func testParseClaudeResponseSkipsThinkingBlocks() throws {
++        let json = #"{"content":[{"type":"thinking","thinking":""},{"type":"text","text":"## Summary"},{"type":"text","text":"\nAll good"}],"stop_reason":"end_turn"}"#
++        XCTAssertEqual(try TherapyInsightsAIClient.parseResponse(provider: .claude, data: Data(json.utf8)), "## Summary\nAll good")
++    }
++
++    func testParseClaudeRefusal() {
++        let json = #"{"content":[],"stop_reason":"refusal"}"#
++        XCTAssertThrowsError(try TherapyInsightsAIClient.parseResponse(provider: .claude, data: Data(json.utf8))) { error in
++            XCTAssertEqual(error as? TherapyInsightsAIError, .refused)
++        }
++    }
++
++    func testParseChatCompletionsResponse() throws {
++        let json = #"{"choices":[{"message":{"role":"assistant","content":"Hello"}}]}"#
++        XCTAssertEqual(try TherapyInsightsAIClient.parseResponse(provider: .deepSeek, data: Data(json.utf8)), "Hello")
++        XCTAssertThrowsError(try TherapyInsightsAIClient.parseResponse(provider: .gitHubModels, data: Data(#"{"choices":[]}"#.utf8)))
++    }
++}

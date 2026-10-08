@@ -1,38 +1,77 @@
 diff --git a/LoopKit/LoopKit/GlucoseKit/GlucoseMath.swift b/LoopKit/LoopKit/GlucoseKit/GlucoseMath.swift
-index 79a9c00..0894569 100644
+index 79a9c00..49b9552 100644
 --- a/LoopKit/LoopKit/GlucoseKit/GlucoseMath.swift
 +++ b/LoopKit/LoopKit/GlucoseKit/GlucoseMath.swift
-@@ -13,6 +13,8 @@ public struct GlucoseMath {
+@@ -13,6 +13,17 @@ public struct GlucoseMath {
      public static let momentumDataInterval: TimeInterval = .minutes(15)
      public static let momentumDuration: TimeInterval = .minutes(15)
      public static let defaultDelta: TimeInterval = .minutes(5)
 +    public static let extendedMomentumDuration: TimeInterval = .minutes(30)
 +    public static let momentumDampingTimeConstant: TimeInterval = .minutes(20)
++    /// Minimum coefficient of determination (R²) of the trend fit required to extend momentum
++    public static let dampedMomentumMinimumFitQuality: Double = 0.8
++
++    /// UserDefaults key of the "Damped Momentum" algorithm experiment toggle
++    public static let dampedMomentumEnabledKey = "com.loopkit.algorithmExperiments.dampedMomentumEnabled"
++
++    public static var isDampedMomentumEnabled: Bool {
++        UserDefaults.standard.bool(forKey: dampedMomentumEnabledKey)
++    }
  }
  
  fileprivate extension Collection where Element == (x: Double, y: Double) {
-@@ -126,6 +128,65 @@ extension BidirectionalCollection where Element: GlucoseSampleValue, Index == In
+@@ -46,6 +57,23 @@ fileprivate extension Collection where Element == (x: Double, y: Double) {
+ 
+         return (slope: slope, intercept: intercept)
+     }
++    /// Coefficient of determination (R²) of a linear fit, or nil when y has no variance
++    func coefficientOfDetermination(slope: Double, intercept: Double) -> Double? {
++        let meanY = reduce(0.0) { $0 + $1.y } / Double(count)
++        var totalSumOfSquares = 0.0
++        var residualSumOfSquares = 0.0
++
++        for point in self {
++            totalSumOfSquares += pow(point.y - meanY, 2)
++            residualSumOfSquares += pow(point.y - (slope * point.x + intercept), 2)
++        }
++
++        guard totalSumOfSquares > 0 else {
++            return nil
++        }
++
++        return 1 - residualSumOfSquares / totalSumOfSquares
++    }
+ }
+ 
+ 
+@@ -126,6 +154,82 @@ extension BidirectionalCollection where Element: GlucoseSampleValue, Index == In
  
          return values
      }
 +
 +    /// Calculates the short-term predicted momentum effect using a damped trend projection.
 +    ///
-+    /// Unlike `linearMomentumEffect`, which projects the measured trend linearly and stops at the
-+    /// end of the effect, this projects the trend over a longer horizon with an exponential decay.
-+    /// This lets the controller anticipate sustained rises and falls (meal excursions and impending
-+    /// lows) for up to `duration`, while damping prevents runaway extrapolation.
++    /// The trend is projected for `duration` with exponentially decaying velocity, instead of linearly for 15 minutes.
++    /// Note that `LoopMath.predictGlucose` blends momentum out linearly over the length of the momentum timeline,
++    /// so the net added effect is modest: for an unexplained trend it is roughly equivalent to a 20 minute linear
++    /// projection, and while blending it also down-weights the insulin and carb effects for 30 minutes instead of 15.
++    ///
++    /// The trend is only extended when it is consistent: the regression must fit the samples well
++    /// (R² ≥ `minimumFitQuality`) and the most recent change must agree with its direction. Otherwise
++    /// (sensor noise, compression-low recovery, turning points) this returns `linearMomentumEffect`.
 +    ///
 +    /// - Parameters:
 +    ///   - duration: The duration of the projected effect
 +    ///   - delta: The time differential for the returned values
 +    ///   - dampingTimeConstant: The time constant of the exponential decay applied to the trend velocity
++    ///   - minimumFitQuality: The minimum R² of the trend fit required to extend the projection
 +    ///   - velocityMaximum: The limit on how fast the momentum effect can be. Defaults to 4 mg/dL/min based on physiological rates, if nil passed.
 +    /// - Returns: An array of glucose effects
 +    public func dampedMomentumEffect(
 +        duration: TimeInterval = GlucoseMath.extendedMomentumDuration,
 +        delta: TimeInterval = GlucoseMath.defaultDelta,
 +        dampingTimeConstant: TimeInterval = GlucoseMath.momentumDampingTimeConstant,
++        minimumFitQuality: Double = GlucoseMath.dampedMomentumMinimumFitQuality,
 +        velocityMaximum: HKQuantity? = nil
 +    ) -> [GlucoseEffect] {
 +
@@ -50,13 +89,24 @@ index 79a9c00..0894569 100644
 +
 +        let unit = HKUnit.milligramsPerDeciliter
 +
-+        let (slope: slope, intercept: _) = self.map { (
++        let points = self.map { (
 +            x: $0.startDate.timeIntervalSince(firstSample.startDate),
 +            y: $0.quantity.doubleValue(for: unit)
-+        ) }.linearRegression()
++        ) }
++        let (slope: slope, intercept: intercept) = points.linearRegression()
 +
 +        guard slope.isFinite else {
 +            return []
++        }
++
++        let lastChange = lastSample.quantity.doubleValue(for: unit) - self[self.endIndex - 2].quantity.doubleValue(for: unit)
++
++        guard
++            let fitQuality = points.coefficientOfDetermination(slope: slope, intercept: intercept),
++            fitQuality >= minimumFitQuality,
++            lastChange * slope > 0
++        else {
++            return linearMomentumEffect(delta: delta, velocityMaximum: velocityMaximum)
 +        }
 +
 +        let limitedSlope = Swift.min(slope, velocityMax.doubleValue(for: unit.unitDivided(by: .second())))
@@ -78,7 +128,7 @@ index 79a9c00..0894569 100644
  
  
 diff --git a/LoopKit/LoopKit/GlucoseKit/GlucoseStore.swift b/LoopKit/LoopKit/GlucoseKit/GlucoseStore.swift
-index 866aca1..f9fe6fb 100644
+index 866aca1..63aee3f 100644
 --- a/LoopKit/LoopKit/GlucoseKit/GlucoseStore.swift
 +++ b/LoopKit/LoopKit/GlucoseKit/GlucoseStore.swift
 @@ -723,7 +723,7 @@ extension GlucoseStore {
@@ -86,28 +136,15 @@ index 866aca1..f9fe6fb 100644
                  completion(.failure(error))
              case .success(let samples):
 -                let effects = samples.linearMomentumEffect()
-+                let effects = samples.dampedMomentumEffect()
++                let effects = GlucoseMath.isDampedMomentumEnabled ? samples.dampedMomentumEffect() : samples.linearMomentumEffect()
                  completion(.success(effects))
              }
          }
-diff --git a/LoopKit/LoopKit/LoopAlgorithm/LoopAlgorithm.swift b/LoopKit/LoopKit/LoopAlgorithm/LoopAlgorithm.swift
-index ea4f253..f085736 100644
---- a/LoopKit/LoopKit/LoopAlgorithm/LoopAlgorithm.swift
-+++ b/LoopKit/LoopKit/LoopAlgorithm/LoopAlgorithm.swift
-@@ -160,7 +160,7 @@ public actor LoopAlgorithm {
-         let momentumEffects: [GlucoseEffect]
-         if settings.algorithmEffectsOptions.contains(.momentum) {
-             let momentumInputData = input.glucoseHistory.filterDateRange(start.addingTimeInterval(-GlucoseMath.momentumDataInterval), start)
--            momentumEffects = momentumInputData.linearMomentumEffect()
-+            momentumEffects = momentumInputData.dampedMomentumEffect()
-         } else {
-             momentumEffects = []
-         }
 diff --git a/LoopKit/LoopKitTests/GlucoseMathTests.swift b/LoopKit/LoopKitTests/GlucoseMathTests.swift
-index 1cf6670..5c72518 100644
+index 1cf6670..67c121d 100644
 --- a/LoopKit/LoopKitTests/GlucoseMathTests.swift
 +++ b/LoopKit/LoopKitTests/GlucoseMathTests.swift
-@@ -316,3 +316,83 @@ class GlucoseMathTests: XCTestCase {
+@@ -316,3 +316,111 @@ class GlucoseMathTests: XCTestCase {
          }
      }
  }
@@ -174,6 +211,34 @@ index 1cf6670..5c72518 100644
 +    func testMixedProvenanceReturnsEmpty() {
 +        let input = samples([100, 105, 110, 115, 120], provenance: ["a", "a", "b", "b", "b"])
 +        XCTAssertTrue(input.dampedMomentumEffect().isEmpty)
++    }
++
++    private func mgdL(_ effects: [GlucoseEffect]) -> [Double] {
++        effects.map { $0.quantity.doubleValue(for: .milligramsPerDeciliter) }
++    }
++
++    func testNoisyTrendFallsBackToLinearMomentum() {
++        let input = samples([100, 112, 101, 115, 104])
++        XCTAssertEqual(mgdL(input.dampedMomentumEffect()), mgdL(input.linearMomentumEffect()))
++    }
++
++    func testTurningPointFallsBackToLinearMomentum() {
++        // Rising overall, but the most recent reading dropped (e.g. peak after a meal)
++        let input = samples([100, 110, 120, 130, 128])
++        XCTAssertEqual(mgdL(input.dampedMomentumEffect()), mgdL(input.linearMomentumEffect()))
++    }
++
++    func testFlatGlucoseFallsBackToLinearMomentum() {
++        let input = samples([110, 110, 110, 110])
++        XCTAssertEqual(mgdL(input.dampedMomentumEffect()), mgdL(input.linearMomentumEffect()))
++    }
++
++    func testConsistentTrendProjectsFurtherThanLinearMomentum() {
++        let input = samples([130, 125, 120, 115, 110])
++        let damped = input.dampedMomentumEffect()
++        let linear = input.linearMomentumEffect()
++        XCTAssertGreaterThan(damped.count, linear.count)
++        XCTAssertLessThan(mgdL(damped).last!, mgdL(linear).last!)
 +    }
 +
 +    func testPredictionAnticipatesFallingGlucoseMoreThanNoMomentum() {
