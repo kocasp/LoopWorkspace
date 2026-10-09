@@ -564,7 +564,7 @@ index 0000000..44838f7
 +}
 diff --git a/Loop/Loop/Managers/Therapy Insights/TherapyInsightsProposal.swift b/Loop/Loop/Managers/Therapy Insights/TherapyInsightsProposal.swift
 new file mode 100644
-index 0000000..cd09970
+index 0000000..38fd50f
 --- /dev/null
 +++ b/Loop/Loop/Managers/Therapy Insights/TherapyInsightsProposal.swift	
 @@ -0,0 +1,337 @@
@@ -768,7 +768,7 @@ index 0000000..cd09970
 +
 +            rows = makeRows(startTimes: startTimes, current: current.items, proposed: items) { Self.format($0, digits: 1, unit: "g/U") }
 +            let bounds = Guardrail.carbRatio.absoluteBounds
-+            if let value = proposed.first(where: { !bounds.contains(HKQuantity(unit: .gramsPerUnit, doubleValue: $0)) }) {
++            if let value = proposed.first(where: { !bounds.contains(HKQuantity(unit: .gram().unitDivided(by: .internationalUnit()), doubleValue: $0)) }) {
 +                return fail(outsideSafeLimits(Self.format(value, digits: 1, unit: "g/U")))
 +            }
 +            guard checkRelativeChange(current: current.items, proposed: items) else { return nil }
